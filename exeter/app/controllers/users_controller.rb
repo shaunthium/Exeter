@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
     def new
-        @user = User.new
-        # debugger
+        if logged_in?
+            redirect_to user_path(@current_user)
+        else
+            @user = User.new
+        end
     end
 
     def create
-        @user = User.new(user_params)
+        user = User.new(user_params)
 
-        if @user.save
-            redirect_to @user
+        if user.save
+            log_in user
+            redirect_to user
         else
             redirect_to root_url
         end
