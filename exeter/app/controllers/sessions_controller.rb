@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
       if logged_in?
-          redirect_to user_path(@current_user)
+          redirect_to @current_user
       end
   end
 
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       end
   end
 
-  def delete
+  def destroy
       log_out
       redirect_to root_url
   end
