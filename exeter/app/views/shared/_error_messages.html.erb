@@ -1,3 +1,10 @@
-<% flash.each do |msg_type, msg| %>
-    <%= content_tag(:div, msg, class: 'alert alert-#{msg_type}') %>
+<% if @user.errors.any? %>
+    <div id="error_messages">
+        <%= content_tag(:div, "The form contains #{pluralize(@user.errors.count, "errors")}:", class: "alert alert-danger") %>
+        <ul>
+            <% @user.errors.full_messages.each do |error| %>
+                    <%= content_tag(:li, error) %>
+            <% end %>
+        </ul>
+    </div>
 <% end %>

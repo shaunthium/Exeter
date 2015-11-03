@@ -4,6 +4,9 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "shared/error_messages";
+
+@include error_messages;
 
 input {
   border: 1px solid #bbb;

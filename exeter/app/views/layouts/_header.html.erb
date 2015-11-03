@@ -3,10 +3,12 @@
         <div class="navbar-brand">
             <%= link_to "Exeter", root_url %>
         </div>
+        <% if logged_in? %>
         <div>
             <ul class="nav navbar-nav">
                 <li><%= link_to "Logout", logout_path, method: "delete" %></li>
             </ul>
         </div>
+        <% end %>
     </div>
 </nav>
