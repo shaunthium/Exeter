@@ -4,8 +4,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-input, textarea, select, .uneditable-input {
+input {
   border: 1px solid #bbb;
   width: 100%;
-  margin-bottom: 15px;
 }
