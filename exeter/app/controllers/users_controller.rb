@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     def new
         if logged_in?
-            redirect_to @current_user
+            redirect_to current_user
         else
             @user = User.new
         end

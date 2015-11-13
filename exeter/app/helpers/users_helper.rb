@@ -16,9 +16,9 @@ module UsersHelper
     # Checks if user is authorized to view page
     def is_correct_user?
         @user = User.find(params[:id])
-        unless @user == @current_user
+        unless @user == current_user
             flash[:danger] = "Please log in as correct user."
-            redirect_to @current_user
+            redirect_to current_user
         end
     end
 end
