@@ -45,9 +45,10 @@ end
 
 group :test do
     gem 'guard'
+    gem 'guard-minitest'
+    gem 'guard-rails'
     gem 'minitest-reporters'
     gem 'mini_backtrace'
-    gem 'guard-minitest'
 end
 
 group :production do

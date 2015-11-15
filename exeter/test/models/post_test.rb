@@ -20,7 +20,7 @@ class PostTest < ActiveSupport::TestCase
         assert_not @post.valid?
     end
 
-    test 'posts should be in descending order' do
+    test "posts should be in descending order" do
         assert_equal posts(:most_recent), Post.first
     end
 end
