@@ -4,4 +4,11 @@
         <p>Your email is: <%= @user.email %></p>
         <p><%= link_to "Edit", edit_user_path %> your information here</p>
     </div>
+    <% if @user.posts.any? %>
+        <div class="jumbotron">
+            <ol class="posts">
+                <%= render @posts %>
+            </ol>
+        </div>
+    <% end %>
 </div>

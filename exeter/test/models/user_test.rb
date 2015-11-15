@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   def setup
       @user = User.new(name: "Example", email: "john@example.com", password: "123", password_confirmation: "123")
   end
@@ -28,5 +24,13 @@ class UserTest < ActiveSupport::TestCase
       @user.save
       duplicate_user.email = @user.email.upcase
       assert_not duplicate_user.valid?
+  end
+
+  test "associated user post should be deleted" do
+      @user.save
+      @user.posts.create!(content: "Lorem Ipsum")
+      assert_difference 'Post.count', -1 do
+          @user.destroy
+      end
   end
 end

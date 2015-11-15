@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     before_action :is_correct_user?, only: [:show, :edit, :update]
 
     def show
+        @posts = @user.posts.all
     end
 
     def new
