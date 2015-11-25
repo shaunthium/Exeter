@@ -4,7 +4,6 @@ class UsersPostTest < ActionDispatch::IntegrationTest
     def setup
         @user = User.new(name: "John", email: "john@hi.com", password: "1", password_confirmation: "1")
         @user.save
-        @post = @user.posts.build(content: "Test content.")
     end
 
     test "user's post should show up on page" do

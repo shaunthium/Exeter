@@ -1,8 +1,13 @@
 <li id="post-<%= post.id %>">
-    <span>
+    <h5>
         <%= link_to post.user.name, post.user %>
-    </span>
-    <span>
+    </h5>
+    <p>
         <%= post.content %>
+    </p>
+    <span>
+        <button type="button" class="btn btn-default">
+        <%= link_to "Delete post", post, method: :delete %>
+        </button>
     </span>
 </li>

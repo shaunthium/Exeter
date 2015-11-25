@@ -58,7 +58,7 @@ end
 
 # Returns all tests for the given resource.
 def resource_tests(resource = :all)
-    integration_tests(resource) << controller_test(resource) << model_test(resource)
+    [integration_tests(resource), controller_test(resource), model_test(resource)]
 end
 
 # Guard-Rails supports a lot options with default values:

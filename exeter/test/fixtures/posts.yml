@@ -3,7 +3,9 @@
 cat:
     content: "Cute cat!"
     created_at: <%= 10.minutes.ago %>
+    user: james
 
 most_recent:
     content: "Most recent post."
     created_at: <%= Time.zone.now %>
+    user: michael

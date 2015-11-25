@@ -6,9 +6,10 @@ class ApplicationController < ActionController::Base
 
     # Checks if user is logged in
     def is_logged_in?
-      unless logged_in?
-          flash[:danger] = "Please log in."
-          redirect_to root_url
-      end
+        # logged_in? found in SessionsHelper
+        unless logged_in?
+            flash[:danger] = "Please log in."
+            redirect_to root_url
+        end
     end
 end
