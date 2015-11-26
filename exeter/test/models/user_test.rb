@@ -33,4 +33,13 @@ class UserTest < ActiveSupport::TestCase
           @user.destroy
       end
   end
+
+  test "should befriend and unfriend another user" do
+      @james = users(:james)
+      @michael = users(:michael)
+      assert_not @james.is_friends_with?(@michael)
+      @james.befriend(@michael)
+      assert @james.is_friends_with?(@michael)
+      assert @michael.is_friends_with?(@james)
+  end
 end

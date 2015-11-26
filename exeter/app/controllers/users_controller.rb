@@ -4,9 +4,10 @@ class UsersController < ApplicationController
     # is_logged_in? is found in ApplicationController
     before_action :is_logged_in?, only: [:show, :edit, :update]
     # is_correct_user? is found in UsersHelper
-    before_action :is_correct_user?, only: [:show, :edit, :update]
+    before_action :is_correct_user?, only: [:edit, :update]
 
     def show
+        @user = User.find(params[:id])
         @posts = @user.posts.all
         @post = @user.posts.build
     end

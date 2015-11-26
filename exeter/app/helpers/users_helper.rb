@@ -4,7 +4,6 @@ module UsersHelper
         params.require(:user).permit(:name, :email, :password,
                                         :password_confirmation)
     end
-    #
     # Checks if user is authorized to view page
     def is_correct_user?
         @user = User.find(params[:id])
@@ -12,5 +11,22 @@ module UsersHelper
             flash[:danger] = "Please log in as correct user."
             redirect_to current_user
         end
+    end
+
+    #Befriends other User
+    def befriend(other_user)
+        friendships.create(friend_id: other_user.id)
+        other_user.friendships.create(friend_id: self.id)
+    end
+
+    #Unfriends other User
+    def unfriend(other_user)
+        friendships.find_by(friend_id: other_user.id).destroy
+        other_user.friendships.find_by(friend_id: self.id).destroy
+    end
+
+    #Returns true if user is friends with other User
+    def is_friends_with?(other_user)
+        friends.include?(other_user)
     end
 end

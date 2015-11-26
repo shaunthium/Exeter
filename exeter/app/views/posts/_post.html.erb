@@ -6,8 +6,6 @@
         <%= post.content %>
     </p>
     <span>
-        <button type="button" class="btn btn-default">
-        <%= link_to "Delete post", post, method: :delete %>
-        </button>
+        <%= link_to "Delete post", post, method: :delete, class: "btn btn-primary" %>
     </span>
 </li>
