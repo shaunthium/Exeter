@@ -8,7 +8,10 @@ class UsersPostTest < ActionDispatch::IntegrationTest
 
     test "user's post should show up on page" do
         @user.posts.create!(content: "Lorem Ipsum")
-        post_via_redirect login_path, session: { email: @user.email, password: "1" }
+        post_via_redirect login_path, session: {
+            email: @user.email,
+            password: "1"
+        }
         assert_select "ol.posts"
     end
 

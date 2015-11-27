@@ -1,8 +1,10 @@
+<% provide(:title, @user.name) %>
 <div class="container-fluid">
     <div class="jumbotron">
         <p>Your name is: <%= @user.name %></p>
         <p>Your email is: <%= @user.email %></p>
         <p><%= link_to "Edit", edit_user_path %> your information here</p>
+        <%= render 'friendships/befriend_form' if logged_in? %>
     </div>
     <div>
         <%= render 'posts/new_post' %>

@@ -10,7 +10,18 @@ class ActiveSupport::TestCase
 
   def log_in_as(user, options = {})
       password = options[:password] || "1"
-      session[:user_id] = user.id
+      if integration_test?
+          post login_path, session: {
+              email: user.email,
+              password: password
+          }
+      else
+          session[:user_id] = user.id
+      end
   end
 
+  private
+    def integration_test?
+        defined?(post_via_redirect)
+    end
 end

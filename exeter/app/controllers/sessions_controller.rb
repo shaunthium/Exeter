@@ -1,7 +1,12 @@
 class SessionsController < ApplicationController
   def new
+      # Note: Use of logged_in? here in place of
+      # is_logged_in? because this action requires
+      # opposite result from is_logged_in?
+
+      # logged_in? found in SessionsHelper
       if logged_in?
-          redirect_to @current_user
+          redirect_to current_logged_in_user
       end
   end
 

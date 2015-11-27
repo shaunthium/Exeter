@@ -20,12 +20,4 @@ class PostsControllerTest < ActionController::TestCase
         end
         assert_redirected_to root_url
     end
-
-    test "should redirect destroy for attempted unauthorized deletion of post" do
-        log_in_as(users(:james))
-        post = posts(:most_recent)
-        assert_no_difference "Post.count" do
-            delete :destroy, id: post
-        end
-    end
 end

@@ -1,13 +1,15 @@
 class PostsController < ApplicationController
     include PostsHelper
+    # is_logged_in? is found in ApplicationController
     before_action :is_logged_in?, only: [:create, :destroy]
-    before_action :correct_user, only: :destroy
+    # is_correct_user_for_post? is found in PostsHelper
+    before_action :is_correct_user_for_post?, only: :destroy
 
     def create
-        @post = @current_user.posts.build(post_params)
+        @post = current_logged_in_user.posts.build(post_params)
         if @post.save
             flash[:success] = "Post created!"
-            redirect_to @current_user
+            redirect_to @current_logged_in_user
         else
             flash[:danger] = "Failed :("
         end
@@ -16,6 +18,6 @@ class PostsController < ApplicationController
     def destroy
         @post.destroy
         flash[:success] = "Post destroyed."
-        redirect_to @current_user
+        redirect_to current_logged_in_user
     end
 end

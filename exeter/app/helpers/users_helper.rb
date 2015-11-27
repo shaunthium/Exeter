@@ -5,11 +5,11 @@ module UsersHelper
                                         :password_confirmation)
     end
     # Checks if user is authorized to view page
-    def is_correct_user?
+    def is_authorized_user?
         @user = User.find(params[:id])
-        unless @user == current_user
+        unless current_logged_in_user_is?(@user)
             flash[:danger] = "Please log in as correct user."
-            redirect_to current_user
+            redirect_to current_logged_in_user
         end
     end
 
