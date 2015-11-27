@@ -11,11 +11,16 @@
         <div>
             <%= render 'posts/new_post' %>
         </div>
+        <div class="jumbotron" id="feed">
+            <ol class="posts">
+                <%= render @feed %>
+            </ol>
+        </div>
+    <% else %>
+        <div class="jumbotron">
+            <ol class="posts">
+                <%= render @all_posts %>
+            </ol>
+        </div>
     <% end %>
-
-    <div class="jumbotron" id="feed">
-        <ol class="posts">
-            <%= render @feed %>
-        </ol>
-    </div>
 </div>

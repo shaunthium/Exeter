@@ -5,7 +5,9 @@
     <p>
         <%= post.content %>
     </p>
+    <% if current_logged_in_user_is?(post.user) %>
     <span>
         <%= link_to "Delete post", post, method: :delete, class: "btn btn-primary" %>
     </span>
+    <% end %>
 </li>
