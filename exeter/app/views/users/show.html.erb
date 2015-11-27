@@ -1,19 +1,21 @@
 <% provide(:title, @user.name) %>
 <div class="container-fluid">
     <div class="jumbotron">
+        <p><%= link_to "All Users", users_path %></p>
         <p>Your name is: <%= @user.name %></p>
         <p>Your email is: <%= @user.email %></p>
-        <p><%= link_to "Edit", edit_user_path %> your information here</p>
-        <%= render 'friendships/befriend_form' if logged_in? %>
+        <p>Edit your information <%= link_to "here.", edit_user_path %></p>
+        <%= render 'friendships/befriend_form' unless current_logged_in_user_is?(@user) %>
     </div>
-    <div>
-        <%= render 'posts/new_post' %>
-    </div>
-    <% if @user.posts.any? %>
-        <div class="jumbotron">
-            <ol class="posts">
-                <%= render @posts %>
-            </ol>
+    <% if current_logged_in_user_is?(@user) %>
+        <div>
+            <%= render 'posts/new_post' %>
         </div>
     <% end %>
+
+    <div class="jumbotron" id="feed">
+        <ol class="posts">
+            <%= render @feed %>
+        </ol>
+    </div>
 </div>

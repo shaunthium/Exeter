@@ -6,10 +6,15 @@ class UsersController < ApplicationController
     # is_authorized_user? is found in UsersHelper
     before_action :is_authorized_user?, only: [:edit, :update]
 
+    def index
+        @all_users = User.all
+    end
+
     def show
         @user = User.find(params[:id])
-        @posts = @user.posts.all
-        @post = @user.posts.build
+        @all_posts = @user.posts.all
+        @new_post = @user.posts.build
+        @feed = @user.feed
     end
 
     def new

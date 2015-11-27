@@ -9,3 +9,8 @@ michael:
     name: "Michael Lim"
     email: "michael@test.com"
     password_digest: <%= BCrypt::Password.create('1') %>
+
+timothy:
+    name: "Timothy Tan"
+    email: "timothy@test.com"
+    password_digest: <%= BCrypt::Password.create('1') %>

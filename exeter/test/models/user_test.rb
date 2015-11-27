@@ -42,4 +42,23 @@ class UserTest < ActiveSupport::TestCase
       assert @james.is_friends_with?(@michael)
       assert @michael.is_friends_with?(@james)
   end
+
+  test "feed should have correct posts" do
+      james = users(:james)
+      michael = users(:michael)
+      timothy = users(:timothy)
+      james.befriend(michael)
+      james.posts.each do |james_post|
+          assert michael.feed.include?(james_post)
+          assert_not timothy.feed.include?(james_post)
+      end
+      michael.posts.each do |michael_post|
+          assert james.feed.include?(michael_post)
+          assert_not timothy.feed.include?(michael_post)
+      end
+      timothy.posts.each do |timothy_post|
+          assert_not james.feed.include?(timothy_post)
+          assert_not michael.feed.include?(timothy_post)
+      end
+  end
 end
