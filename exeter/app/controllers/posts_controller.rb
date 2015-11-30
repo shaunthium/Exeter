@@ -9,10 +9,10 @@ class PostsController < ApplicationController
         @post = current_logged_in_user.posts.build(post_params)
         if @post.save
             flash[:success] = "Post created!"
-            redirect_to @current_logged_in_user
         else
             flash[:danger] = "Failed :("
         end
+        redirect_to @current_logged_in_user
     end
 
     def destroy
