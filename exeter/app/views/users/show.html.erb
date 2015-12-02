@@ -7,6 +7,11 @@
         <% if current_logged_in_user_is?(@user) %>
             <p>Edit your information <%= link_to "here.", edit_user_path %></p>
             <p><%= link_to "Your groups", groups_user_path %></p>
+            <% if @groups != nil %>
+                <% @groups.each do |group| %>
+                    <%= group.name %>
+                <% end %>
+            <% end %>
         <% end %>
         <% if @user.friends.any? %>
             <% count = @user.friends.count %>

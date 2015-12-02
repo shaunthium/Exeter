@@ -15,6 +15,7 @@ class UsersController < ApplicationController
         @new_post = @user.posts.build
         @all_posts = @user.posts.all
         @feed = @current_logged_in_user.feed
+        @groups = Group.where(member_id: current_logged_in_user.id)
     end
 
     def new
