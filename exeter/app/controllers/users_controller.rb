@@ -54,4 +54,8 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         @friends = user.friends
     end
+
+    def groups
+        @groups = Group.find_by(member_id: current_logged_in_user.id)
+    end
 end
