@@ -4,6 +4,7 @@ james:
   name: "James Tan"
   email: "james@example.com"
   password_digest: <%= BCrypt::Password.create('1') %>
+  id: 1
 
 michael:
     name: "Michael Lim"

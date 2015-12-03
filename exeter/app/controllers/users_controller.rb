@@ -57,6 +57,6 @@ class UsersController < ApplicationController
     end
 
     def groups
-        @groups = Group.find_by(member_id: current_logged_in_user.id)
+        @groups = Group.where(member_id: current_logged_in_user.id)
     end
 end
