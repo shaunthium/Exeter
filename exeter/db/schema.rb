@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202042913) do
+ActiveRecord::Schema.define(version: 20151206053955) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20151202042913) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "groups", ["group_id", "member_id"], name: "index_groups_on_group_id_and_member_id", unique: true
   add_index "groups", ["group_id"], name: "index_groups_on_group_id"
   add_index "groups", ["member_id"], name: "index_groups_on_member_id"
 
