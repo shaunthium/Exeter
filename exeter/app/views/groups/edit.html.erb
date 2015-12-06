@@ -1,3 +1,23 @@
 <div class="container-fluid">
-    <p>Testing</p>
+    <%= form_for(@group) do |f| %>
+        <ol>
+            <% @friends.each do |friend| %>
+                <li>
+                    <%= check_box_tag("friend[#{friend.id}]", friend.id) %>
+                    <%= label_tag("friend[#{friend.id}]", friend.name) %>
+                </li>
+            <% end %>
+        </ol>
+        <% if view == "add" %>
+            <%= f.submit "Add friends to group", class: "btn btn-primary" %>
+        <% else %>
+            <%= f.submit "Remove friends from group", class: "btn btn-primary" %>
+        <% end %>
+    <% end %>
+    <!-- <%= form_for(@group) do |f| %>
+        <div class="form-group">
+            <%= f.label :member_id, "Member name:" %>
+            <%= f.text_field :member_id, class: "form-control" %>
+        </div>
+    <% end %> -->
 </div>

@@ -5,15 +5,15 @@
         <p>Your name is: <%= @user.name %></p>
         <p>Your email is: <%= @user.email %></p>
         <% if current_logged_in_user_is?(@user) %>
-            <p>Edit your information <%= link_to "here.", edit_user_path %></p>
-            <p><%= link_to "Create new group", new_group_path %></p>
+            <p>Edit your information <%= link_to "here.", edit_user_path(@user) %></p>
+            <p><%= link_to "Create new group:", new_group_path %></p>
             <p><%= link_to "All groups:", groups_user_path %></p>
             <p>Featured groups: </p>
             <% if @groups != nil %>
                 <ol id="groups-ol">
                 <% @groups.each do |group| %>
                     <li>
-                    <%= group.name %>
+                    <%= link_to group.name, group %>
                     </li>
                 <% end %>
                 </ol>

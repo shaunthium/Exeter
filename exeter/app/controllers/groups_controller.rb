@@ -27,14 +27,24 @@ class GroupsController < ApplicationController
         end
     end
 
-    def edit
-    end
-
     def show
         @group = Group.find(params[:id])
+        @members_groups = Group.where(group_id: params[:id])
+    end
+
+    def edit
+        @group = Group.find(params[:id])
+        @friends = current_logged_in_user.friends
     end
 
     def update
+        group_to_update = Group.find(params[:id])
+        @friend_ids = params[:friend]
+        @friend_ids.each do |key, value|
+            group_to_add = Group.create(group_id: group_to_update.id, name: group_to_update.name, member_id: key.to_i)
+        end
+        flash[:success] = "Updated group successfully!"
+        redirect_to current_logged_in_user
     end
 
     def destroy
