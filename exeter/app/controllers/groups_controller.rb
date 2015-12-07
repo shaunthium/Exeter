@@ -34,14 +34,15 @@ class GroupsController < ApplicationController
         @view = params[:view]
         @group = Group.find(params[:id])
 
-        user_friends = get_users_friends
-        added_friends = get_added_friends
-
-        @friends_to_add = []
-        user_friends.each do |f|
-            unless added_friends.exists?(f.id)
-                @friends_to_add << f
+        if @view == "add"
+            @friends_to_add = []
+            users_friends.each do |f|
+                unless added_friends.exists?(f.id)
+                    @friends_to_add << f
+                end
             end
+        else
+            @friends_to_remove = added_friends(remove=true)
         end
     end
 
@@ -49,7 +50,11 @@ class GroupsController < ApplicationController
         curr_group = Group.find(params[:id])
         @friend_ids = params[:friend]
         @friend_ids.each do |key, value|
-            Group.create(group_id: curr_group.id, name: curr_group.name, member_id: key.to_i)
+            if params[:add]
+                Group.create(group_id: curr_group.id, name: curr_group.name, member_id: key.to_i)
+            else
+                Group.find_by(group_id: curr_group.id, member_id: key.to_i).destroy
+            end
         end
         flash[:success] = "Updated group successfully!"
         redirect_to curr_group
