@@ -13,7 +13,7 @@
                 <ol id="groups-ol">
                 <% @groups.each do |group| %>
                     <li>
-                    <%= link_to group.name, group %>
+                    <%= link_to group.name, group_path(@user, group.id) %>
                     </li>
                 <% end %>
                 </ol>

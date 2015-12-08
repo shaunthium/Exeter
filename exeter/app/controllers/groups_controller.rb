@@ -26,7 +26,7 @@ class GroupsController < ApplicationController
 
     def show
         @group = Group.find(params[:id])
-        @members_groups = Group.where(group_id: params[:id])
+        @members_groups = Group.where(group_id: @group.group_id)
     end
 
     def edit
@@ -50,10 +50,10 @@ class GroupsController < ApplicationController
         curr_group = Group.find(params[:id])
         @friend_ids = params[:friend]
         @friend_ids.each do |key, value|
-            if params[:add]
-                Group.create(group_id: curr_group.id, name: curr_group.name, member_id: key.to_i)
+            if params[:add] == "true"
+                Group.create(group_id: curr_group.group_id, name: curr_group.name, member_id: key.to_i)
             else
-                Group.find_by(group_id: curr_group.id, member_id: key.to_i).destroy
+                Group.find_by(group_id: curr_group.group_id, member_id: key.to_i).destroy
             end
         end
         flash[:success] = "Updated group successfully!"

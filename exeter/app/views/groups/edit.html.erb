@@ -19,7 +19,7 @@
             <%= hidden_field_tag :add, true %>
             <%= f.submit "Add friends to group", class: "btn btn-primary"%>
         <% else %>
-            <%= hidden_field_tag :add, true %>
+            <%= hidden_field_tag :add, false %>
             <%= f.submit "Remove friends from group", class: "btn btn-primary"%>
         <% end %>
     <% end %>
