@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     delete 'logout' => 'sessions#destroy'
 
     resources :users do
-        member do
-            get :friends
-        end
+        # member do
+        #     get :friends
+        # end
+        get :friends
         resources :groups
     end
     resources :posts, only: [:create, :destroy]

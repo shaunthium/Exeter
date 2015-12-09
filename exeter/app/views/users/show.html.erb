@@ -22,7 +22,7 @@
         <% end %>
         <% if @user.friends.any? %>
             <% count = @user.friends.count %>
-            <p><%= link_to "Friends list (#{count})", friends_user_path(@user.id) %></p>
+            <p><%= link_to "Friends list (#{count})", user_friends_path(user_id: @user.id) %></p>
         <% end %>
         <%= render 'friendships/befriend_form' unless current_logged_in_user_is?(@user) %>
     </div>

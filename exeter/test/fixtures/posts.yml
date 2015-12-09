@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 cat:
-    id: 2
     content: "Cute cat!"
     created_at: <%= 10.minutes.ago %>
     user: james
 
 most_recent:
-    id: 1
     content: "Most recent post."
     created_at: <%= Time.zone.now %>
     user: michael

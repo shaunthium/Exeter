@@ -5,12 +5,12 @@ class UsersShowFriendsTest < ActionDispatch::IntegrationTest
         james = users(:james)
         michael = users(:michael)
         log_in_as(james)
-        get friends_user_path(james.id)
+        get user_friends_path(user_id: james.id)
         # 1 "li" already present as logout button
         # in navbar
         assert_select "li", count: 1
         james.befriend(michael)
-        get friends_user_path(james.id)
+        get user_friends_path(user_id: james.id)
         assert_select "li", count: 2
     end
 end

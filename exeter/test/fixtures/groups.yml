@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+first:
     group_id: 1
     name: "First"
-    member_id: 1
-    # id: 1
+    member_id: users(:james).id
 
-two:
+second:
     group_id: 2
     name: "Second"
-    member_id: 1
-    # id: 2
+    member_id: users(:james).id

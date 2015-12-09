@@ -53,7 +53,8 @@ ActiveRecord::Schema.define(version: 20151208083148) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.boolean  "admin"
-    t.integer  "group_id"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
