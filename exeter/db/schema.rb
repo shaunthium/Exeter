@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208083148) do
+ActiveRecord::Schema.define(version: 20151209103025) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,16 +25,21 @@ ActiveRecord::Schema.define(version: 20151208083148) do
   add_index "friendships", ["user_id"], name: "index_friendships_on_user_id"
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "group_id"
     t.string   "name"
-    t.integer  "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "groups", ["group_id", "member_id"], name: "index_groups_on_group_id_and_member_id", unique: true
-  add_index "groups", ["group_id"], name: "index_groups_on_group_id"
-  add_index "groups", ["member_id"], name: "index_groups_on_member_id"
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "member_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id"
+  add_index "memberships", ["member_id", "group_id"], name: "index_memberships_on_member_id_and_group_id", unique: true
+  add_index "memberships", ["member_id"], name: "index_memberships_on_member_id"
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"

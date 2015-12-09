@@ -3,7 +3,6 @@ class GroupsController < ApplicationController
 
     # is_logged_in? is found in ApplicationController
     before_action :is_logged_in?
-    before_action :get_max_group_id, only: :create
 
     def index
     end
@@ -14,9 +13,10 @@ class GroupsController < ApplicationController
     end
 
     def create
-        @group = Group.new(name: group_params[:name], member_id: current_logged_in_user.id, group_id: @group_id)
+        @group = Group.new(group_params)
         if @group.save
             flash[:success] = "Group successfully created!"
+            current_logged_in_user.memberships.create(group_id: @group.id)
             redirect_to user_group_path(user_id: current_logged_in_user.id, id: @group.id)
         else
             flash[:danger] = "Failed to create group."
@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
     def show
         @group = Group.find(params[:id])
-        @members_groups = Group.where(group_id: @group.group_id)
+        @members = @group.members.all
         @user = current_logged_in_user
     end
 

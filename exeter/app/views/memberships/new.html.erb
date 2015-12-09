@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <%= form_for(@membership) do |f| %>
+        <ol>
+            <% @members.each do |member| %>
+                <li>
+                    <%= render "membership_checkboxes", member: member %>
+                </li>
+            <% end %>
+        </ol>
+        <%= hidden_field_tag :group_id, @group_id %>
+        <%= f.submit "Add friends to group", class: "btn btn-primary"%>
+    <% end %>
+</div>

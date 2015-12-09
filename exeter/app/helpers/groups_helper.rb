@@ -4,16 +4,6 @@ module GroupsHelper
         params.require(:group).permit(:name)
     end
 
-    # Returns the current largest maximum group id and
-    #increments it by 1.
-    def get_max_group_id
-        current_max_group_id = Group.maximum(:group_id)
-        if current_max_group_id == nil
-            current_max_group_id = 0
-        end
-        @group_id = current_max_group_id.to_i + 1
-    end
-
     # Returns ActiveRelation of all of user's friends
     def users_friends
         users_friend_ids = "SELECT friend_id FROM friendships WHERE user_id = :user_id"
