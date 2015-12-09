@@ -10,13 +10,14 @@ class GroupsController < ApplicationController
 
     def new
         @group = Group.new
+        @user = current_logged_in_user
     end
 
     def create
         @group = Group.new(name: group_params[:name], member_id: current_logged_in_user.id, group_id: @group_id)
         if @group.save
             flash[:success] = "Group successfully created!"
-            redirect_to @group
+            redirect_to user_group_path(user_id: current_logged_in_user.id, id: @group.id)
         else
             flash[:danger] = "Failed to create group."
             render 'new'
@@ -27,12 +28,14 @@ class GroupsController < ApplicationController
     def show
         @group = Group.find(params[:id])
         @members_groups = Group.where(group_id: @group.group_id)
+        @user = current_logged_in_user
     end
 
     def edit
         # For deciding if group should add or remove members
         @view = params[:view]
         @group = Group.find(params[:id])
+        @user = current_logged_in_user
 
         if @view == "add"
             @friends_to_add = []
@@ -57,7 +60,7 @@ class GroupsController < ApplicationController
             end
         end
         flash[:success] = "Updated group successfully!"
-        redirect_to curr_group
+        redirect_to user_group_path(user_id: current_logged_in_user.id, id: curr_group.id)
     end
 
     def destroy

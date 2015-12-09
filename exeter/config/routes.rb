@@ -8,9 +8,8 @@ Rails.application.routes.draw do
     resources :users do
         member do
             get :friends
-            get :groups
-            resources :groups
         end
+        resources :groups
     end
     resources :posts, only: [:create, :destroy]
     resources :friendships, only: [:create, :destroy]
