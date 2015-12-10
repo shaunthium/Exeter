@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <%= form_for(@membership) do |f| %>
+    <%= form_tag(memberships_path, method: :post) do %>
         <ol>
             <% @members.each do |member| %>
                 <li>
@@ -8,6 +8,6 @@
             <% end %>
         </ol>
         <%= hidden_field_tag :group_id, @group_id %>
-        <%= f.submit "Add friends to group", class: "btn btn-primary"%>
+        <%= submit_tag "Add friends to group", class: "btn btn-primary"%>
     <% end %>
 </div>

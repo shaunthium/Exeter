@@ -10,6 +10,8 @@ module SessionsHelper
 
     # Returns current logged in user (if any)
     def current_logged_in_user
+        # Use find_by instead of find, as find throws
+        # exception if session[:user_id] == nil
         @current_logged_in_user ||= User.find_by(id: session[:user_id])
     end
 

@@ -7,8 +7,7 @@
         <% if current_logged_in_user_is?(@user) %>
             <p>Edit your information <%= link_to "here.", edit_user_path(@user) %></p>
             <p><%= link_to "Create new group:", new_user_group_path(user_id: @user.id) %></p>
-            <p><%= link_to "All groups:", user_groups_path(user_id: @user.id) %></p>
-            <p>Featured groups: </p>
+            <p>All groups: </p>
             <% if @groups != nil %>
                 <ol id="groups-ol">
                 <% @groups.each do |group| %>
