@@ -1,7 +1,9 @@
 class MembershipsController < ApplicationController
     include MembershipsHelper
 
+    # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?
+
     def new
         @membership = Membership.new
         @members = members_to_add

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     end
     resources :posts, only: [:create, :destroy]
     resources :friendships, only: [:create, :destroy]
+
     resources :memberships, only: [:new, :create, :destroy], path_names: { new: 'add' }
+
     get 'remove_memberships' => 'memberships#remove', path: 'memberships/remove'
 
   # The priority is based upon order of creation: first created -> highest priority.

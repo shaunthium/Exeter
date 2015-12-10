@@ -4,12 +4,4 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     include SessionsHelper
 
-    # Checks if user is logged in
-    def is_logged_in?
-        # logged_in? found in SessionsHelper
-        unless logged_in?
-            flash[:danger] = "Please log in."
-            redirect_to root_url
-        end
-    end
 end

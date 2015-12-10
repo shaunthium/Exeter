@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     include UsersHelper
 
-    # is_logged_in? is found in ApplicationController
+    # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?, only: [:index, :show, :edit, :update, :friends]
     # is_authorized_user? is found in UsersHelper
     before_action :is_authorized_user?, only: [:edit, :update]

@@ -25,4 +25,21 @@ module SessionsHelper
     def logged_in?
         !current_logged_in_user.nil?
     end
+
+    # Checks if user is logged in
+    def is_logged_in?
+        unless logged_in?
+            flash[:danger] = "Please log in."
+            redirect_to root_url
+        end
+    end
+
+    # Checks if user is authorized to access page
+    def is_authorized_user?
+        @user = User.find_by(id: params[:id]) || User.find_by(id: params[:user_id])
+        unless current_logged_in_user_is?(@user)
+            flash[:danger] = "Please log in as correct user."
+            redirect_to current_logged_in_user
+        end
+    end
 end

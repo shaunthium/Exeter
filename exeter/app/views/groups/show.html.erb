@@ -1,16 +1,23 @@
 <div class="container-fluid">
-    <h3>Group name:</h3>
-    <h4><%= @group.name %></h4>
+    <div>
+        <h3>Group name:</h3>
+        <h4><%= @group.name %></h4>
+        <%= link_to "Edit group information", edit_user_group_path(user_id: @user, id: @group), class: "btn btn-primary" %>
+    </div>
     <br>
-    <h5><%= link_to "Add friends to group", new_membership_path(group_id: @group.id), class: "btn btn-primary" %></h5>
-    <h5><%= link_to "Remove friends from group", remove_memberships_path(group_id: @group.id), class: "btn btn-primary" %></h5>
+    <div>
+        <h5><%= link_to "Add friends to group", new_membership_path(group_id: @group.id), class: "btn btn-primary" %></h5>
+        <h5><%= link_to "Remove friends from group", remove_memberships_path(group_id: @group.id), class: "btn btn-primary" %></h5>
+    </div>
     <br>
-    <h3>Group members:</h3>
-    <ol>
-    <% @members.each do |member| %>
-        <li>
-            <%= member.name %>
-        </li>
-    <% end %>
-    </ol>
+    <div>
+        <h3>Group members:</h3>
+        <ol>
+        <% @members.each do |member| %>
+            <li>
+                <%= member.name %>
+            </li>
+        <% end %>
+        </ol>
+    </div>
 </div>

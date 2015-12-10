@@ -1,26 +1,3 @@
 <div class="container-fluid">
-    <%= form_for(@group, url: user_group_path(user_id: @user.id, id: @group.id)) do |f| %>
-        <ol>
-            <% if @view == "add" %>
-                <% @friends_to_add.each do |friend| %>
-                    <li>
-                        <%= render "group_checkboxes", friend: friend %>
-                    </li>
-                <% end %>
-            <% else %>
-                <% @friends_to_remove.each do |friend| %>
-                    <li>
-                        <%= render "group_checkboxes", friend: friend %>
-                    </li>
-                <% end %>
-            <% end %>
-        </ol>
-        <% if @view == "add" %>
-            <%= hidden_field_tag :add, true %>
-            <%= f.submit "Add friends to group", class: "btn btn-primary"%>
-        <% else %>
-            <%= hidden_field_tag :add, false %>
-            <%= f.submit "Remove friends from group", class: "btn btn-primary"%>
-        <% end %>
-    <% end %>
+
 </div>

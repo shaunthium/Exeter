@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-    # is_logged_in? is found in ApplicationController
+    # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?, only: [:create, :destroy]
 
     def create

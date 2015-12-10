@@ -1,8 +1,10 @@
 class GroupsController < ApplicationController
     include GroupsHelper
 
-    # is_logged_in? is found in ApplicationController
+    # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?
+    # is_authorized_user? is found in SessionsHelper
+    before_action :is_authorized_user?, except: :show
 
     def index
     end
@@ -32,21 +34,7 @@ class GroupsController < ApplicationController
     end
 
     def edit
-        # For deciding if group should add or remove members
-        @view = params[:view]
-        @group = Group.find(params[:id])
-        @user = current_logged_in_user
 
-        if @view == "add"
-            @friends_to_add = []
-            users_friends.each do |f|
-                unless added_friends.exists?(f.id)
-                    @friends_to_add << f
-                end
-            end
-        else
-            @friends_to_remove = added_friends(remove=true)
-        end
     end
 
     def update
