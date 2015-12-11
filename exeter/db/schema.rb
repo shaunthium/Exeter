@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151209103025) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -20,9 +23,9 @@ ActiveRecord::Schema.define(version: 20151209103025) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
-  add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
-  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id"
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id", using: :btree
+  add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true, using: :btree
+  add_index "friendships", ["user_id"], name: "index_friendships_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -37,9 +40,9 @@ ActiveRecord::Schema.define(version: 20151209103025) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id"
-  add_index "memberships", ["member_id", "group_id"], name: "index_memberships_on_member_id_and_group_id", unique: true
-  add_index "memberships", ["member_id"], name: "index_memberships_on_member_id"
+  add_index "memberships", ["group_id"], name: "index_memberships_on_group_id", using: :btree
+  add_index "memberships", ["member_id", "group_id"], name: "index_memberships_on_member_id_and_group_id", unique: true, using: :btree
+  add_index "memberships", ["member_id"], name: "index_memberships_on_member_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"
@@ -48,8 +51,8 @@ ActiveRecord::Schema.define(version: 20151209103025) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -60,6 +63,6 @@ ActiveRecord::Schema.define(version: 20151209103025) do
     t.boolean  "admin"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
