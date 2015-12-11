@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?, only: [:index, :show, :edit, :update, :friends]
-    # is_authorized_user? is found in UsersHelper
+    # is_authorized_user? is found in SessionsHelper
     before_action :is_authorized_user?, only: [:edit, :update]
 
     def index
@@ -34,7 +34,6 @@ class UsersController < ApplicationController
             redirect_to @user
         else
             render 'new'
-            @user = User.new
         end
     end
 
@@ -44,7 +43,7 @@ class UsersController < ApplicationController
     # Unsuccessful update handled by error_messages partial
     def update
         if @user.update_attributes(user_params)
-            flash[:success] = "Information successfully updated"
+            flash[:success] = "Information successfully updated!"
             redirect_to @user
         else
             render 'edit'

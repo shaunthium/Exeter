@@ -2,7 +2,13 @@
     <div>
         <h3>Group name:</h3>
         <h4><%= @group.name %></h4>
+    </div>
+    <div>
         <%= link_to "Edit group information", edit_user_group_path(user_id: @user, id: @group), class: "btn btn-primary" %>
+    </div>
+    <br>
+    <div>
+        <%= link_to "Delete group", user_group_path(user_id: @user, id: @group), method: :delete, class: "btn btn-primary" %>
     </div>
     <br>
     <div>

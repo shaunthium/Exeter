@@ -6,8 +6,8 @@ module GroupsHelper
 
     # Returns ActiveRelation of all of user's friends
     def users_friends
-        users_friend_ids = "SELECT friend_id FROM friendships WHERE user_id = :user_id"
-        users_friends = User.where("id IN (#{users_friend_ids})", user_id: current_logged_in_user)
+        users_friends_ids = "SELECT friend_id FROM friendships WHERE user_id = :user_id"
+        users_friends = User.where("id IN (#{users_friends_ids})", user_id: current_logged_in_user)
     end
 
     # Returns ActiveRelation of all of user's friends

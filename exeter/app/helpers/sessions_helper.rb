@@ -36,7 +36,7 @@ module SessionsHelper
 
     # Checks if user is authorized to access page
     def is_authorized_user?
-        @user = User.find_by(id: params[:id]) || User.find_by(id: params[:user_id])
+        @user = User.find_by(id: params[:user_id]) || User.find_by(id: params[:id])
         unless current_logged_in_user_is?(@user)
             flash[:danger] = "Please log in as correct user."
             redirect_to current_logged_in_user
