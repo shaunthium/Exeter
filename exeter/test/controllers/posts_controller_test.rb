@@ -4,7 +4,7 @@ class PostsControllerTest < ActionController::TestCase
     def setup
         @user = User.new(name: "John", email: "john@hi.com", password: "1", password_confirmation: "1")
         @user.save
-        @post = @user.posts.create!(content: "Test content.")
+        @post = @user.posts.create!(content: "Test content.", group_id: 1)
     end
 
     test "should redirect create when not logged in" do

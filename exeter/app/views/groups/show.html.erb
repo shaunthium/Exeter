@@ -16,14 +16,23 @@
         <h5><%= link_to "Remove friends from group", remove_memberships_path(group_id: @group.id), class: "btn btn-primary" %></h5>
     </div>
     <br>
-    <div>
+    <div id="group-members">
         <h3>Group members:</h3>
         <ol>
-        <% @members.each do |member| %>
-            <li>
-                <%= member.name %>
-            </li>
-        <% end %>
+            <% @members.each do |member| %>
+                <li>
+                    <%= member.name %>
+                </li>
+            <% end %>
         </ol>
+    </div>
+    <br>
+    <div>
+        <div>
+            <%= render 'posts/new_post' %>
+        </div>
+        <div class="jumbotron" id="feed">
+
+        </div>
     </div>
 </div>

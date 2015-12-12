@@ -2,8 +2,9 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
     def setup
-        @user = users(:james)
-        @post = @user.posts.build(content: "Test content.")
+        james = users(:james)
+        group_1 = groups(:group_1)
+        @post = james.posts.build(content: "Test content.", group_id: group_1.id)
     end
 
     test "should be valid" do
@@ -12,6 +13,11 @@ class PostTest < ActiveSupport::TestCase
 
     test "user id should be present" do
         @post.user_id = nil
+        assert_not @post.valid?
+    end
+
+    test "group id should be present" do
+        @post.group_id = nil
         assert_not @post.valid?
     end
 

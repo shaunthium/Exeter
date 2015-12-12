@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
     before_action :is_logged_in?
     # is_authorized_user? is found in SessionsHelper
     before_action :is_authorized_user?, except: :show
+    # get_current_group_from_id is found in GroupsHelper
+    before_action :get_current_group_from_id, only: [:show, :edit, :update, :destroy]
 
     def index
     end
@@ -26,21 +28,20 @@ class GroupsController < ApplicationController
     end
 
     def show
-        @group = Group.find(params[:id])
         @members = @group.members.all
-        @user = current_logged_in_user
+        @user = @current_logged_in_user
+        @new_post = @user.posts.build(group_id: @group.id)
+        # @feed = current_logged_in_user.feed
     end
 
     def edit
-        @group = Group.find_by(id: params[:id])
-        @user_id = current_logged_in_user.id
+        @user_id = @current_logged_in_user.id
     end
 
     def update
-        @group = Group.find_by(id: params[:id])
-        @user_id = current_logged_in_user.id
+        @user_id = @current_logged_in_user.id
         if @group.update_attributes(group_params)
-            flash[:success] = "Updated group successfully!"       
+            flash[:success] = "Updated group successfully!"
             redirect_to user_group_path(user_id: @user_id, id: @group)
         else
             render 'edit'
@@ -48,8 +49,8 @@ class GroupsController < ApplicationController
     end
 
     def destroy
-        Group.find_by(id: params[:id]).destroy
+        @group.destroy
         flash[:success] = "Successfully deleted group."
-        redirect_to user_path(current_logged_in_user.id)
+        redirect_to user_path(@current_logged_in_user)
     end
 end

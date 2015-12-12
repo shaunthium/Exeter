@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post.destroy
+        @post.destroy!
         flash[:success] = "Post destroyed."
         redirect_to current_logged_in_user
     end

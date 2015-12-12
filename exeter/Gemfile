@@ -46,19 +46,18 @@ group :development, :test do
 end
 
 group :test do
-    # Require for guard-minitest and guard-rails
+    # Required for guard-minitest and guard-rails
     gem 'guard'
     # Runs tests automatically when files change
     # using Guard
     gem 'guard-minitest'
-    # Starts Rails Server with guard command
+    # Starts Rails server with guard command
     gem 'guard-rails'
     # Custom reporters
     gem 'minitest-reporters'
-    # Silences backtrace when running tests
-    gem 'mini_backtrace'
 end
 
 group :production do
+    # Needed to deploy app on 12 factor server e.g. Heroku
     gem 'rails_12factor'
 end

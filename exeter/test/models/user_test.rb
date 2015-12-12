@@ -28,8 +28,28 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated user post should be deleted" do
       @user.save
-      @user.posts.create!(content: "Lorem Ipsum")
-      assert_difference 'Post.count', -1 do
+      @user.posts.create!(content: "Lorem Ipsum", group_id: 1)
+      assert_difference "Post.count", -1 do
+          @user.destroy
+      end
+  end
+
+  test "associated user's friendships should be deleted" do
+      @user.save
+      assert_difference "Friendship.count", 2 do
+          @user.befriend(users(:michael))
+      end
+      assert_difference "Friendship.count", -2 do
+          @user.destroy
+      end
+  end
+
+  test "associated user's memberships should be deleted" do
+      @user.save
+      assert_difference "Membership.count" do
+          @user.add_to_group(groups(:group_2))
+      end
+      assert_difference "Membership.count", -1 do
           @user.destroy
       end
   end
@@ -41,24 +61,5 @@ class UserTest < ActiveSupport::TestCase
       @james.befriend(@michael)
       assert @james.is_friends_with?(@michael)
       assert @michael.is_friends_with?(@james)
-  end
-
-  test "feed should have correct posts" do
-      james = users(:james)
-      michael = users(:michael)
-      timothy = users(:timothy)
-      james.befriend(michael)
-      james.posts.each do |james_post|
-          assert michael.feed.include?(james_post)
-          assert_not timothy.feed.include?(james_post)
-      end
-      michael.posts.each do |michael_post|
-          assert james.feed.include?(michael_post)
-          assert_not timothy.feed.include?(michael_post)
-      end
-      timothy.posts.each do |timothy_post|
-          assert_not james.feed.include?(timothy_post)
-          assert_not michael.feed.include?(timothy_post)
-      end
   end
 end

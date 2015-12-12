@@ -6,14 +6,14 @@ module UsersHelper
 
     # Befriends other User
     def befriend(other_user)
-        friendships.create(friend_id: other_user.id)
-        other_user.friendships.create(friend_id: id)
+        friendships.create!(friend_id: other_user.id)
+        other_user.friendships.create!(friend_id: id)
     end
 
     # Unfriends other User
     def unfriend(other_user)
-        friendships.find_by(friend_id: other_user.id).destroy
-        other_user.friendships.find_by(friend_id: id).destroy
+        friendships.find_by(friend_id: other_user.id).destroy!
+        other_user.friendships.find_by(friend_id: id).destroy!
     end
 
     # Returns true if user is friends with other User
@@ -21,9 +21,13 @@ module UsersHelper
         friends.include?(other_user)
     end
 
-    # Returns user's feed
-    def feed
-        friends_ids = "SELECT friend_id FROM friendships WHERE user_id = :self_id"
-        Post.where("user_id IN (#{friends_ids}) OR user_id = :self_id", self_id: id)
+    # Adds member to group
+    def add_to_group(group)
+        memberships.create!(group_id: group.id)
+    end
+
+    # Removes member from group
+    def remove_from_group(group)
+        memberships.find_by(group_id: group.id).destroy!
     end
 end

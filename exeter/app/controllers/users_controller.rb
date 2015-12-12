@@ -12,9 +12,6 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        @new_post = @user.posts.build
-        @all_posts = @user.posts.all
-        @feed = current_logged_in_user.feed
         @groups = current_logged_in_user.groups.all
     end
 
@@ -42,9 +39,9 @@ class UsersController < ApplicationController
 
     # Unsuccessful update handled by error_messages partial
     def update
-        if @user.update_attributes(user_params)
+        if @current_logged_in_user.update_attributes(user_params)
             flash[:success] = "Information successfully updated!"
-            redirect_to @user
+            redirect_to @current_logged_in_user
         else
             render 'edit'
         end
@@ -57,5 +54,8 @@ class UsersController < ApplicationController
 
     def groups
         @groups = Group.where(member_id: current_logged_in_user.id)
+    end
+
+    def destroy
     end
 end

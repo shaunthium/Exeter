@@ -1,23 +1,22 @@
 module GroupsHelper
+    # Returns group id from group id
+    def get_current_group_from_group_id
+        @group = Group.find(params[:group_id])
+    end
+
+    # Returns group id from id
+    def get_current_group_from_id
+        @group = Group.find(params[:id])
+    end
+
     # Strong params for Group name
     def group_params
         params.require(:group).permit(:name)
     end
 
-    # Returns ActiveRelation of all of user's friends
-    def users_friends
-        users_friends_ids = "SELECT friend_id FROM friendships WHERE user_id = :user_id"
-        users_friends = User.where("id IN (#{users_friends_ids})", user_id: current_logged_in_user)
-    end
-
-    # Returns ActiveRelation of all of user's friends
-    # which have been added into the group
-    def added_friends(remove=false)
-        user_ids = "SELECT member_id FROM groups WHERE group_id = :group_id"
-        added_friends = User.where("id IN (#{user_ids})", group_id: Group.find(params[:id]).group_id)
-        if remove
-            added_friends = added_friends.where.not(id: current_logged_in_user.id)
-        end
-        added_friends
+    # Returns user's feed
+    def feed
+        friends_ids = "SELECT friend_id FROM friendships WHERE user_id = :self_id"
+        Post.where("user_id IN (#{friends_ids}) OR user_id = :self_id", self_id: id)
     end
 end
