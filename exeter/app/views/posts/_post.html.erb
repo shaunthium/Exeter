@@ -7,7 +7,7 @@
     </p>
     <% if current_logged_in_user_is?(post.user) %>
     <span>
-        <%= link_to "Delete post", post, method: :delete, class: "btn btn-primary" %>
+        <%= link_to "Delete post", post_path(id: post, group_id: @group), method: :delete, class: "btn btn-primary", data: { confirm: "Confirm deletion of post?" } %>
     </span>
     <% end %>
 </li>

@@ -36,10 +36,11 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated user's friendships should be deleted" do
       @user.save
+      michael = users(:michael)
       assert_difference "Friendship.count", 2 do
-          @user.befriend(users(:michael))
+          @user.befriend(michael)
       end
-      assert_difference "Friendship.count", -2 do
+      assert_difference "Friendship.count", -1 do
           @user.destroy
       end
   end

@@ -2,9 +2,9 @@ class UsersController < ApplicationController
     include UsersHelper
 
     # is_logged_in? is found in SessionsHelper
-    before_action :is_logged_in?, only: [:index, :show, :edit, :update, :friends]
+    before_action :is_logged_in?, except: [:new, :create]
     # is_authorized_user? is found in SessionsHelper
-    before_action :is_authorized_user?, only: [:edit, :update]
+    before_action :is_authorized_user?, only: [:edit, :update, :destroy]
 
     def index
         @all_users = User.all
@@ -57,5 +57,12 @@ class UsersController < ApplicationController
     end
 
     def destroy
+        friends = @current_logged_in_user.friends.all
+        friends.each do |f|
+            @current_logged_in_user.unfriend(f)
+        end
+        @current_logged_in_user.destroy!
+        flash[:success] = "User successfully removed."
+        redirect_to root_path
     end
 end

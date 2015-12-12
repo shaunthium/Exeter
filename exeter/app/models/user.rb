@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
+    # Needed to allow User instances
+    # to call methods in UsersHelper
     include UsersHelper
+
     has_many :posts, dependent: :destroy
     has_many :friendships, dependent: :destroy
     has_many :friends, through: :friendships

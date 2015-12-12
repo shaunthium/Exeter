@@ -11,13 +11,13 @@ class PostsControllerTest < ActionController::TestCase
         assert_no_difference "Post.count" do
             post :create, post: { content: "Test" }
         end
-        assert_redirected_to root_url
+        assert_redirected_to root_path
     end
 
     test "should redirect destroy when not logged in" do
         assert_no_difference "Post.count" do
             delete :destroy, id: @post
         end
-        assert_redirected_to root_url
+        assert_redirected_to root_path
     end
 end

@@ -30,7 +30,7 @@ module SessionsHelper
     def is_logged_in?
         unless logged_in?
             flash[:danger] = "Please log in."
-            redirect_to root_url
+            redirect_to root_path
         end
     end
 

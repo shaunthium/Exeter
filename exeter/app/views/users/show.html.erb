@@ -5,15 +5,16 @@
         <p>Your name is: <%= @user.name %></p>
         <p>Your email is: <%= @user.email %></p>
         <% if current_logged_in_user_is?(@user) %>
+            <p><%= link_to "Delete user", user_path(@user), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure?" } %></p>
             <p>Edit your information <%= link_to "here.", edit_user_path(@user) %></p>
-            <p><%= link_to "Create new group:", new_user_group_path(user_id: @user.id) %></p>
+            <p><%= link_to "Create new group", new_user_group_path(user_id: @user), class: "btn btn-primary" %></p>
             <p>All groups: </p>
             <% if @groups != nil %>
                 <ol id="groups-ol">
                 <% @groups.each do |group| %>
                     <% group_id = group.id %>
                     <li>
-                        <%= link_to group.name, user_group_path(user_id: @user.id, id: group.id) %>
+                        <%= link_to group.name, user_group_path(user_id: @user, id: group) %>
                     </li>
                 <% end %>
                 </ol>
@@ -21,7 +22,7 @@
         <% end %>
         <% if @user.friends.any? %>
             <% count = @user.friends.count %>
-            <p><%= link_to "Friends list (#{count})", user_friends_path(user_id: @user.id) %></p>
+            <p><%= link_to "Friends list (#{count})", user_friends_path(user_id: @user) %></p>
         <% end %>
         <%= render 'friendships/befriend_form' unless current_logged_in_user_is?(@user) %>
     </div>

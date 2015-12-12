@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
         @members = @group.members.all
         @user = @current_logged_in_user
         @new_post = @user.posts.build(group_id: @group.id)
-        # @feed = current_logged_in_user.feed
+        @feed = feed
     end
 
     def edit
@@ -53,4 +53,13 @@ class GroupsController < ApplicationController
         flash[:success] = "Successfully deleted group."
         redirect_to user_path(@current_logged_in_user)
     end
+
+    private
+        # Returns user's feed
+        # Note: Not in GroupsHelper, as
+        # group_id is needed from params[:id]
+        def feed
+            members_ids = "SELECT member_id FROM memberships WHERE group_id = :group_id"
+            Post.where("(user_id IN (#{members_ids})) AND (group_id = :group_id)", group_id: @group)
+        end
 end

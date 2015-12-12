@@ -25,7 +25,7 @@ class MembershipsController < ApplicationController
 
     def remove
         @group_id = params[:group_id]
-        @members = added_friends_ids(remove=true)
+        @members = added_friends
     end
 
     def destroy

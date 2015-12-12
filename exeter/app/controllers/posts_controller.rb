@@ -6,18 +6,18 @@ class PostsController < ApplicationController
     before_action :is_correct_user_for_post?, only: :destroy
 
     def create
-        @post = current_logged_in_user.posts.build(post_params)
+        @post = @current_logged_in_user.posts.build(post_params)
         if @post.save
             flash[:success] = "Post created!"
         else
-            flash[:danger] = "Failed :("
+            flash[:danger] = "Failed to create post."
         end
-        redirect_to @current_logged_in_user
+        redirect_to user_group_path(user_id: @current_logged_in_user, id: params[:post][:group_id])
     end
 
     def destroy
         @post.destroy!
         flash[:success] = "Post destroyed."
-        redirect_to current_logged_in_user
+        redirect_to user_group_path(user_id: @current_logged_in_user, id: params[:group_id])
     end
 end

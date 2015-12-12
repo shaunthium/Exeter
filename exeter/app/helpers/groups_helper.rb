@@ -13,10 +13,4 @@ module GroupsHelper
     def group_params
         params.require(:group).permit(:name)
     end
-
-    # Returns user's feed
-    def feed
-        friends_ids = "SELECT friend_id FROM friendships WHERE user_id = :self_id"
-        Post.where("user_id IN (#{friends_ids}) OR user_id = :self_id", self_id: id)
-    end
 end

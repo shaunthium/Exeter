@@ -1,7 +1,7 @@
 module PostsHelper
     # Strong params for Posts
     def post_params
-        params.require(:post).permit(:content)
+        params.require(:post).permit(:content, :group_id)
     end
 
     # Checks if user is authorized to delete post
