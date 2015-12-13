@@ -2,11 +2,8 @@
 <div class="container-fluid">
     <div class="jumbotron">
         <p><%= link_to "All Users", users_path %></p>
-        <p>Your name is: <%= @user.name %></p>
-        <p>Your email is: <%= @user.email %></p>
+        <p><%= @user.name %></p>
         <% if current_logged_in_user_is?(@user) %>
-            <p><%= link_to "Delete user", user_path(@user), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure?" } %></p>
-            <p>Edit your information <%= link_to "here.", edit_user_path(@user) %></p>
             <p><%= link_to "Create new group", new_user_group_path(user_id: @user), class: "btn btn-primary" %></p>
             <p>All groups: </p>
             <% if @groups != nil %>
