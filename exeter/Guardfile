@@ -1,7 +1,7 @@
 # Defines the matching rules for Guard.
 
-guard :minitest, spring: true, all_on_start: false do
-    # Runs test itself when it changes
+guard :minitest, spring: true, all_on_start: true do
+    # Runs each test itself when it changes
     watch(%r{^test/(.*)/?(.*)_test\.rb$})
     # Runs all tests when TestHelper changes
     watch('test/test_helper.rb') { 'test' }
@@ -27,6 +27,7 @@ guard :minitest, spring: true, all_on_start: false do
     # As SessionsHelper is used extensively,
     # do all integration tests as well as
     # corresponding controller and helper tests
+    # if it's changed
     watch('app/helpers/sessions_helper.rb') {
         [integration_tests, 'test/controllers/sessions_controller_test.rb', 'test/helpers/sessions_helper_test.rb']
     }
