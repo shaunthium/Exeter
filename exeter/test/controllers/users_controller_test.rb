@@ -25,7 +25,7 @@ class UsersControllerTest < ActionController::TestCase
             password_confirmation: "1"
         }
         assert_not flash.empty?
-        assert_redirected_to @james
+        assert_redirected_to "/users/sam"
     end
 
     test "should delete user and associated friends" do

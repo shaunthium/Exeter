@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?, except: [:new, :create]
     # is_authorized_user? is found in SessionsHelper
-    before_action :is_authorized_user?, only: [:edit, :update, :destroy]
+    before_action :is_authorized_user?, only: [:edit, :update, :destroy, :friends]
 
     def index
         @all_users = User.all
@@ -39,6 +39,7 @@ class UsersController < ApplicationController
 
     # Unsuccessful update handled by error_messages partial
     def update
+        @current_logged_in_user.slug = nil
         if @current_logged_in_user.update_attributes(user_params)
             flash[:success] = "Information successfully updated!"
             redirect_to @current_logged_in_user

@@ -1,3 +1,4 @@
+<% provide(:title, @group.name) %>
 <div class="container-fluid">
     <div id="test">
         <h3>Group name:</h3>
@@ -8,13 +9,15 @@
     </div>
     <br>
     <div>
-        <%= link_to "Delete group", user_group_path(user_id: @user, id: @group), method: :delete, class: "btn btn-primary" %>
+        <%= link_to "Delete group", user_group_path(user_id: @user, id: @group), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete this group?" } %>
     </div>
     <br>
+    <% if @user.friends.any? %>
     <div>
         <h5><%= link_to "Add friends to group", new_membership_path(group_id: @group.id), class: "btn btn-primary" %></h5>
         <h5><%= link_to "Remove friends from group", remove_memberships_path(group_id: @group.id), class: "btn btn-primary" %></h5>
     </div>
+    <% end %>
     <br>
     <div id="group-members">
         <h3>Group members:</h3>

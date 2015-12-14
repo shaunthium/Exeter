@@ -9,7 +9,7 @@ class GroupsControllerTest < ActionController::TestCase
 
     test "should create new group" do
         assert_difference "Group.count" do
-            post :create, user_id: @james, group: {
+            post :create, user_id: @james.slug, group: {
                 name: "Test"
             }
         end
@@ -23,9 +23,9 @@ class GroupsControllerTest < ActionController::TestCase
     end
 
     test "should update group information" do
-        post :update, user_id: @james, id: @group_1, group: { name: "New group name" }
+        post :update, user_id: @james.slug, id: @group_1, group: { name: "New group name" }
         assert_not flash.empty?
-        assert_redirected_to user_group_path(user_id: @james, id: @group_1)
+        assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.id)
     end
 
     test "should destroy group" do

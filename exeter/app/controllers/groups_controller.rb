@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
     # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?
     # is_authorized_user? is found in SessionsHelper
-    before_action :is_authorized_user?, except: :show
+    before_action :is_authorized_user?
     # get_current_group_from_id is found in GroupsHelper
     before_action :get_current_group_from_id, only: [:show, :edit, :update, :destroy]
 
@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
         if @group.save
             flash[:success] = "Group successfully created!"
             current_logged_in_user.memberships.create(group_id: @group.id)
-            redirect_to user_group_path(user_id: current_logged_in_user.slug, id: @group)
+            redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: @group.id)
         else
             render 'new'
         end
@@ -35,14 +35,14 @@ class GroupsController < ApplicationController
     end
 
     def edit
-        @user_id = @current_logged_in_user.id
+        @user_slug = @current_logged_in_user.slug
     end
 
     def update
-        @user_id = @current_logged_in_user.id
+        @user_slug = @current_logged_in_user.slug
         if @group.update_attributes(group_params)
             flash[:success] = "Updated group successfully!"
-            redirect_to user_group_path(user_id: @user_id, id: @group)
+            redirect_to user_group_path(user_id: @user_slug, id: @group)
         else
             render 'edit'
         end
