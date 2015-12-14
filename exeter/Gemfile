@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-# Ruby version
-ruby '2.2.1'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 
@@ -96,3 +93,6 @@ group :production do
     # Needed to deploy app on 12 factor server e.g. Heroku
     gem 'rails_12factor'
 end
+
+# Ruby version
+ruby '2.2.1'
