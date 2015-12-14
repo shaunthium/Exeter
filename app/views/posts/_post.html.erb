@@ -1,0 +1,13 @@
+<li id="post-<%= post.id %>">
+    <h5>
+        <%= link_to post.user.name, post.user %>
+    </h5>
+    <p>
+        <%= post.content %>
+    </p>
+    <% if current_logged_in_user_is?(post.user) %>
+    <span>
+        <%= link_to "Delete post", post_path(id: post, group_id: @group), method: :delete, class: "btn btn-primary", data: { confirm: "Confirm deletion of post?" } %>
+    </span>
+    <% end %>
+</li>
