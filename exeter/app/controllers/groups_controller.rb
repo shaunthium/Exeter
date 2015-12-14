@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
         if @group.save
             flash[:success] = "Group successfully created!"
             current_logged_in_user.memberships.create(group_id: @group.id)
-            redirect_to user_group_path(user_id: current_logged_in_user.id, id: @group.id)
+            redirect_to user_group_path(user_id: current_logged_in_user.slug, id: @group)
         else
             render 'new'
         end

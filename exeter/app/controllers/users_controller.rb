@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        @user = User.friendly.find(params[:id])
         @groups = current_logged_in_user.groups.all
     end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     end
 
     def friends
-        user = User.find(params[:user_id])
+        user = User.friendly.find(params[:user_id])
         @friends = user.friends
     end
 
