@@ -1,5 +1,0 @@
-<% if current_logged_in_user.is_friends_with?(@user) %>
-    <%= render 'friendships/unfriend' %>
-<% else %>
-    <%= render 'friendships/befriend' %>
-<% end %>
