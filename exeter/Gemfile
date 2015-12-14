@@ -92,6 +92,10 @@ end
 group :production do
     # Needed to deploy app on 12 factor server e.g. Heroku
     gem 'rails_12factor'
+
+    # Use Puma instead of WEBrick in production
+    # to handle larger amounts of traffic
+    gem 'puma'
 end
 
 # Ruby version
