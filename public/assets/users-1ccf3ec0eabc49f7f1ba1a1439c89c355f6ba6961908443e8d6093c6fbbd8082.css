@@ -1,0 +1,10 @@
+/* line 2, /Users/Shaun/Coding/HTML:CSS:JavaScript/Websites/exeter/exeter/app/assets/stylesheets/shared/error_messages.css.scss */
+#error_messages {
+  color: red;
+}
+
+/* line 5, /Users/Shaun/Coding/HTML:CSS:JavaScript/Websites/exeter/exeter/app/assets/stylesheets/users.css.scss */
+input {
+  border: 1px solid #bbb;
+  width: 100%;
+}
