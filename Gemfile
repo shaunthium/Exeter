@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Ruby version
+ruby '2.2.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 
@@ -39,6 +42,9 @@ gem 'pg'
 # Use human-readable strings as route ids
 # and obfuscate ids
 gem 'friendly_id', '~> 5.1.0'
+
+# Create realistic testing data
+gem 'faker'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -97,6 +103,3 @@ group :production do
     # to handle larger amounts of traffic
     gem 'puma'
 end
-
-# Ruby version
-ruby '2.2.1'
