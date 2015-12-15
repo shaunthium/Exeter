@@ -1,9 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="container-fluid">
     <div class="jumbotron">
-        <% if Rails.env.development? %>
-            <p><%= link_to "All Users", users_path %></p>
-        <% end %>
+        <p><%= link_to "All Users", users_path %></p>
         <p><%= @user.name %></p>
         <% if current_logged_in_user_is?(@user) %>
             <p><%= link_to "Create new group", new_user_group_path(user_id: @user), class: "btn btn-primary" %></p>
