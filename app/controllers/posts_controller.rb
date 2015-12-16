@@ -12,7 +12,7 @@ class PostsController < ApplicationController
         else
             flash[:danger] = "Failed to create post."
         end
-        redirect_to user_group_path(user_id: @current_logged_in_user, id: params[:post][:group_id])
+        redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: Group.find(params[:post][:group_id]).slug)
     end
 
     def destroy

@@ -1,6 +1,6 @@
 # Defines the matching rules for Guard.
 
-guard :minitest, spring: true, all_on_start: true do
+guard :minitest, spring: true, all_on_start: false do
     # Runs each test itself when it changes
     watch(%r{^test/(.*)/?(.*)_test\.rb$})
     # Runs all tests when TestHelper changes
