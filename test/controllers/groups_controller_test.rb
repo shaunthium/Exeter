@@ -16,23 +16,23 @@ class GroupsControllerTest < ActionController::TestCase
     end
 
     test "should show group members" do
-        get :show, user_id: @james, id: @group_1
+        get :show, user_id: @james.slug, id: @group_1.slug
         assert_select 'div#group-members' do
             assert_select "li", 1
         end
     end
 
     test "should update group information" do
-        post :update, user_id: @james.slug, id: @group_1, group: { name: "New group name" }
+        post :update, user_id: @james.slug, id: @group_1.slug, group: { name: "New group name" }
         assert_not flash.empty?
-        assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.id)
+        assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.slug)
     end
 
     test "should destroy group" do
         assert_difference "Group.count", -1 do
-            post :destroy, user_id: @james, id: @group_1
+            post :destroy, user_id: @james.slug, id: @group_1.slug
             assert_not flash.empty?
-            assert_redirected_to user_path(@james)
+            assert_redirected_to user_path(@james.slug)
         end
     end
 end

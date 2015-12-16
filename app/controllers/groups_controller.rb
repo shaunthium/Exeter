@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
         if @group.save
             flash[:success] = "Group successfully created!"
             current_logged_in_user.memberships.create(group_id: @group.id)
-            redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: @group.id)
+            redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: @group.slug)
         else
             render 'new'
         end
@@ -42,7 +42,7 @@ class GroupsController < ApplicationController
         @user_slug = @current_logged_in_user.slug
         if @group.update_attributes(group_params)
             flash[:success] = "Updated group successfully!"
-            redirect_to user_group_path(user_id: @user_slug, id: @group)
+            redirect_to user_group_path(user_id: @user_slug, id: @group.slug)
         else
             render 'edit'
         end
@@ -55,9 +55,9 @@ class GroupsController < ApplicationController
     end
 
     private
-        # Returns user's feed
-        # Note: Not in GroupsHelper, as
-        # group_id is needed from params[:id]
+        # Returns user's feed.
+        # Note: Not in GroupsHelper, as group_id is needed from params[:id]
+        # and params method can't be accessed from helpers
         def feed
             members_ids = "SELECT member_id FROM memberships WHERE group_id = :group_id"
             Post.where("(user_id IN (#{members_ids})) AND (group_id = :group_id)", group_id: @group)
