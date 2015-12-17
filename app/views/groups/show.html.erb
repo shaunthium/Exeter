@@ -5,17 +5,17 @@
         <h4><%= @group.name %></h4>
     </div>
     <div>
-        <%= link_to "Edit group information", edit_user_group_path(user_id: @user, id: @group), class: "btn btn-primary" %>
+        <%= link_to "Edit group information", edit_user_group_path(user_id: @user.slug, id: @group.slug), class: "btn btn-primary" %>
     </div>
     <br>
     <div>
-        <%= link_to "Delete group", user_group_path(user_id: @user, id: @group), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete this group?" } %>
+        <%= link_to "Delete group", user_group_path(user_id: @user.slug, id: @group.slug), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete this group?" } %>
     </div>
     <br>
     <% if @user.friends.any? %>
     <div>
-        <h5><%= link_to "Add friends to group", new_membership_path(group_id: @group.id), class: "btn btn-primary" %></h5>
-        <h5><%= link_to "Remove friends from group", remove_memberships_path(group_id: @group.id), class: "btn btn-primary" %></h5>
+        <h5><%= link_to "Add friends to group", new_membership_path(group_slug: @group.slug), class: "btn btn-primary" %></h5>
+        <h5><%= link_to "Remove friends from group", remove_memberships_path(group_slug: @group.slug), class: "btn btn-primary" %></h5>
     </div>
     <% end %>
     <br>

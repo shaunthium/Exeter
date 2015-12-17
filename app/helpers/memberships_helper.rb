@@ -11,11 +11,11 @@ module MembershipsHelper
         if get_ids
             added_friends_ids
         else
-            User.where("(id IN (#{added_friends_ids}))", group_id: params[:group_id]).where.not("id = ?", current_logged_in_user.id)
+            User.where("(id IN (#{added_friends_ids}))", group_id: Group.friendly.find(params[:group_slug]).id).where.not("id = ?", @current_logged_in_user.id)
         end
     end
 
     def members_to_add
-        members_to_add = User.where("(id IN (#{all_friends_ids})) AND (id NOT IN (#{added_friends(get_ids=true)}))", user_id: current_logged_in_user.id, group_id: params[:group_id])
+        members_to_add = User.where("(id IN (#{all_friends_ids})) AND (id NOT IN (#{added_friends(get_ids=true)}))", user_id: @current_logged_in_user.id, group_id: Group.friendly.find(params[:group_slug]).id)
     end
 end

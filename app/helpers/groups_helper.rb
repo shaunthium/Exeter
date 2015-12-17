@@ -1,12 +1,12 @@
 module GroupsHelper
-    # Returns group id from group id
-    def get_current_group_from_group_id
-        @group = Group.friendly.find(params[:group_id])
+    # Returns group from slug in params[:id]
+    def get_current_group_from_slug_in_id
+        @group = Group.friendly.find(params[:id])
     end
 
-    # Returns group id from id
-    def get_current_group_from_id
-        @group = Group.friendly.find(params[:id])
+    # Returns group from slug in params[:group_slug]
+    def get_current_group_from_slug_in_group_slug
+        @group = Group.friendly.find(params[:group_slug])
     end
 
     # Strong params for Group name

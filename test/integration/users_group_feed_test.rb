@@ -9,9 +9,9 @@ class UsersGroupFeedTest < ActionDispatch::IntegrationTest
         james.befriend(michael)
         michael.add_to_group(group_1)
         michael.posts.create!(group_id: group_1.id, content: "Content")
-        get user_group_path(user_id: james, id: group_1)
+        get user_group_path(user_id: james.slug, id: group_1.slug)
         assert_select "div#feed" do
-            assert_select "li", 1
+            assert_select "li", 2
         end
     end
 end

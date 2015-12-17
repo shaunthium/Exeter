@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
     before_action :is_logged_in?
     # is_authorized_user? is found in SessionsHelper
     before_action :is_authorized_user?
-    # get_current_group_from_id is found in GroupsHelper
-    before_action :get_current_group_from_id, only: [:show, :edit, :update, :destroy]
+    # get_current_group_from_slug_in_id is found in GroupsHelper
+    before_action :get_current_group_from_slug_in_id, only: [:show, :edit, :update, :destroy]
 
     def index
     end

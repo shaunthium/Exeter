@@ -9,18 +9,18 @@ class MembershipsControllerTest < ActionController::TestCase
 
     test "should create new membership" do
         assert_difference "Membership.count" do
-            post :create, group_id: @group_2, members: { @james.id => @james.id }
+            post :create, group_slug: @group_2.slug, members: { @james.slug => @james.slug }
             assert_not flash.empty?
-            assert_redirected_to user_group_path(user_id: @james, id: @group_2)
+            assert_redirected_to user_group_path(user_id: @james.slug, id: @group_2.slug)
         end
     end
 
     test "should destroy membership" do
         group_1 = groups(:group_1)
         assert_difference "Membership.count", -1 do
-            post :destroy, id: group_1, group_id: group_1, members: { @james.id => @james.id }
+            post :destroy, id: group_1.slug, group_slug: group_1.slug, members: { @james.slug => @james.slug }
             assert_not flash.empty?
-            assert_redirected_to user_group_path(user_id: @james, id: group_1)
+            assert_redirected_to user_group_path(user_id: @james.slug, id: group_1.slug)
         end
     end
 

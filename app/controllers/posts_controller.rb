@@ -18,6 +18,6 @@ class PostsController < ApplicationController
     def destroy
         @post.destroy!
         flash[:success] = "Post destroyed."
-        redirect_to user_group_path(user_id: @current_logged_in_user, id: params[:group_id])
+        redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: params[:group_slug])
     end
 end
