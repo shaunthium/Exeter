@@ -21,10 +21,10 @@ class PostsControllerTest < ActionController::TestCase
     test "should delete post" do
         log_in_as(@james)
         assert_difference "Post.count", -1 do
-            post :destroy, id: @cat.id, group_id: @group_1.id
+            post :destroy, id: @cat.id, group_id: @group_1.id, group_slug: @group_1.slug
+            assert_not flash.empty?
+            assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.slug)
         end
-        assert_not flash.empty?
-        assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.slug)
     end
 
     test "should redirect create when not logged in" do

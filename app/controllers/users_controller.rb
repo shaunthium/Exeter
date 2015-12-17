@@ -44,6 +44,7 @@ class UsersController < ApplicationController
             flash[:success] = "Information successfully updated!"
             redirect_to @current_logged_in_user
         else
+            @user = @current_logged_in_user
             render 'edit'
         end
     end
