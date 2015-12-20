@@ -20,7 +20,9 @@ class GroupsController < ApplicationController
         @group = Group.new(group_params)
         if @group.save
             flash[:success] = "Group successfully created!"
-            current_logged_in_user.memberships.create(group_id: @group.id)
+            @current_logged_in_user.memberships.create(group_id: @group.id)
+            @current_logged_in_user.adminships.create(administrated_group_id: @group.id)
+
             redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: @group.slug)
         else
             render 'new'
@@ -40,6 +42,7 @@ class GroupsController < ApplicationController
 
     def update
         @user_slug = @current_logged_in_user.slug
+        @group.slug = nil
         if @group.update_attributes(group_params)
             flash[:success] = "Updated group successfully!"
             redirect_to user_group_path(user_id: @user_slug, id: @group.slug)

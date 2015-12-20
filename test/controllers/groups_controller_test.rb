@@ -25,7 +25,7 @@ class GroupsControllerTest < ActionController::TestCase
     test "should update group information" do
         post :update, user_id: @james.slug, id: @group_1.slug, group: { name: "New group name" }
         assert_not flash.empty?
-        assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.slug)
+        assert_redirected_to user_group_path(user_id: @james.slug, id: "New group name".parameterize)
     end
 
     test "should destroy group" do

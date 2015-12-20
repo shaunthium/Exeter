@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216152920) do
+ActiveRecord::Schema.define(version: 20151220101242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adminships", force: :cascade do |t|
+    t.integer  "admin_id"
+    t.integer  "administrated_group_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "adminships", ["admin_id", "administrated_group_id"], name: "index_adminships_on_admin_id_and_administrated_group_id", unique: true, using: :btree
+  add_index "adminships", ["admin_id"], name: "index_adminships_on_admin_id", using: :btree
+  add_index "adminships", ["administrated_group_id"], name: "index_adminships_on_administrated_group_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false

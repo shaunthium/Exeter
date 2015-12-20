@@ -12,6 +12,9 @@ class User < ActiveRecord::Base
     has_many :memberships, foreign_key: "member_id",
                             dependent: :destroy
     has_many :groups, through: :memberships
+    has_many :adminships, foreign_key: "admin_id",
+                            dependent: :destroy
+    has_many :administrated_groups, class_name: "Group", through: :adminships
 
     has_secure_password
 

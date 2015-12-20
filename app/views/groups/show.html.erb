@@ -1,22 +1,28 @@
 <% provide(:title, @group.name) %>
 <div class="container-fluid">
-    <div id="test">
+    <div>
         <h3>Group name:</h3>
         <h4><%= @group.name %></h4>
     </div>
-    <div>
-        <%= link_to "Edit group information", edit_user_group_path(user_id: @user.slug, id: @group.slug), class: "btn btn-primary" %>
-    </div>
-    <br>
-    <div>
-        <%= link_to "Delete group", user_group_path(user_id: @user.slug, id: @group.slug), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete this group?" } %>
-    </div>
-    <br>
-    <% if @user.friends.any? %>
-    <div>
-        <h5><%= link_to "Add friends to group", new_membership_path(group_slug: @group.slug), class: "btn btn-primary" %></h5>
-        <h5><%= link_to "Remove friends from group", remove_memberships_path(group_slug: @group.slug), class: "btn btn-primary" %></h5>
-    </div>
+    <% if @group.admins.include?(@user) %>
+        <div>
+            <%= link_to "Edit group information", edit_user_group_path(user_id: @user.slug, id: @group.slug), class: "btn btn-primary" %>
+        </div>
+        <br>
+        <div>
+            <%= link_to "Delete group", user_group_path(user_id: @user.slug, id: @group.slug), method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure you want to delete this group?" } %>
+        </div>
+        <br>
+        <% if @user.friends.any? %>
+            <div>
+                <h5><%= link_to "Add members to group", new_membership_path(group_slug: @group.slug), class: "btn btn-primary" %></h5>
+            </div>
+        <% end %>
+        <% if @group.members.count > 1 %>
+            <div>
+                <h5><%= link_to "Remove members from group", remove_memberships_path(group_slug: @group.slug), class: "btn btn-primary" %></h5>
+            </div>
+        <% end %>
     <% end %>
     <br>
     <div id="group-members">
