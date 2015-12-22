@@ -23,11 +23,16 @@ module UsersHelper
 
     # Adds member to group
     def add_to_group(group)
-        memberships.create!(group_id: group.id)
+        memberships.create(group_id: group.id)
     end
 
     # Removes member from group
     def remove_from_group(group)
         memberships.find_by(group_id: group.id).destroy!
+    end
+
+    # Makes user admin of group
+    def make_admin_of_group(group)
+        adminships.create(administrated_group_id: group.id)
     end
 end

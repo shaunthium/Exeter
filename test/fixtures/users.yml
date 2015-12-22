@@ -17,3 +17,9 @@ timothy:
     email: "timothy@test.com"
     password_digest: <%= BCrypt::Password.create('1') %>
     slug: "timothy-tan"
+
+adam:
+    name: "Adam Ng"
+    email: "adam@test.com"
+    password_digest: <%= BCrypt::Password.create('1') %>
+    slug: "adam-ng"

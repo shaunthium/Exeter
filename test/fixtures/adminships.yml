@@ -1,4 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-one:
+adminship_1:
     admin: james
     administrated_group: group_1

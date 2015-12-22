@@ -6,6 +6,18 @@
     <% if view == "new" %>
         <%= f.submit "Create group", class: "btn btn-primary" %>
     <% else %>
+        <% unless @members.empty? %>
+            <div class="form-group">
+                <h5>Members to make admins:</h5>
+                <ol>
+                    <% @members.each do |member| %>
+                        <li>
+                            <%= render "memberships/membership_checkboxes", member: member %>
+                        </li>
+                    <% end %>
+                </ol>
+            </div>
+        <% end %>
         <%= f.submit "Update group", class: "btn btn-primary" %>
     <% end %>
 <% end %>

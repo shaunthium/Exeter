@@ -1,4 +1,5 @@
 require 'test_helper'
+include MembershipsHelper, SessionsHelper
 
 class MembershipsControllerTest < ActionController::TestCase
     def setup
@@ -23,5 +24,4 @@ class MembershipsControllerTest < ActionController::TestCase
             assert_redirected_to user_group_path(user_id: @james.slug, id: group_1.slug)
         end
     end
-
 end

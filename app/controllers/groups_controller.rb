@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-    include GroupsHelper
+    include GroupsHelper, MembershipsHelper
 
     # is_logged_in? is found in SessionsHelper
     before_action :is_logged_in?
@@ -20,10 +20,10 @@ class GroupsController < ApplicationController
         @group = Group.new(group_params)
         if @group.save
             flash[:success] = "Group successfully created!"
-            @current_logged_in_user.memberships.create(group_id: @group.id)
-            @current_logged_in_user.adminships.create(administrated_group_id: @group.id)
+            current_logged_in_user.add_to_group(@group)
+            current_logged_in_user.make_admin_of_group(@group)
 
-            redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: @group.slug)
+            redirect_to user_group_path(user_id: current_logged_in_user.slug, id: @group.slug)
         else
             render 'new'
         end
@@ -31,19 +31,25 @@ class GroupsController < ApplicationController
 
     def show
         @members = @group.members.all
-        @user = @current_logged_in_user
+        @group_admins = @group.admins
+        @user = current_logged_in_user
         @new_post = @user.posts.build(group_id: @group.id)
         @feed = feed
     end
 
     def edit
-        @user_slug = @current_logged_in_user.slug
+        @user_slug = current_logged_in_user.slug
+        @members = members_to_make_admin
     end
 
     def update
-        @user_slug = @current_logged_in_user.slug
+        @user_slug = current_logged_in_user.slug
         @group.slug = nil
         if @group.update_attributes(group_params)
+            @members_slugs = params[:members]
+            @members_slugs.each do |name, slug|
+                User.friendly.find(slug).make_admin_of_group(@group)
+            end
             flash[:success] = "Updated group successfully!"
             redirect_to user_group_path(user_id: @user_slug, id: @group.slug)
         else
@@ -54,7 +60,7 @@ class GroupsController < ApplicationController
     def destroy
         @group.destroy
         flash[:success] = "Successfully deleted group."
-        redirect_to user_path(@current_logged_in_user)
+        redirect_to user_path(current_logged_in_user)
     end
 
     private

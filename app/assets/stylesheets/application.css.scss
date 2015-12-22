@@ -1,5 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "shared/error_messages";
+
+@include error_messages;
+
+.debug_dump {
+    width: 100%;
+    position: static;
+    bottom: 0;
+}
+
+input[type="submit"] {
+  border: 1px solid #bbb;
+  width: 100%;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -11,6 +25,4 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *= require_tree ./miscellaneous
- *= require_self
  */

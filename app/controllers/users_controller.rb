@@ -39,12 +39,12 @@ class UsersController < ApplicationController
 
     # Unsuccessful update handled by error_messages partial
     def update
-        @current_logged_in_user.slug = nil
-        if @current_logged_in_user.update_attributes(user_params)
+        current_logged_in_user.slug = nil
+        if current_logged_in_user.update_attributes(user_params)
             flash[:success] = "Information successfully updated!"
-            redirect_to @current_logged_in_user
+            redirect_to current_logged_in_user
         else
-            @user = @current_logged_in_user
+            @user = current_logged_in_user
             render 'edit'
         end
     end
@@ -59,11 +59,11 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        friends = @current_logged_in_user.friends.all
+        friends = current_logged_in_user.friends.all
         friends.each do |f|
-            @current_logged_in_user.unfriend(f)
+            current_logged_in_user.unfriend(f)
         end
-        @current_logged_in_user.destroy!
+        current_logged_in_user.destroy!
         flash[:success] = "User successfully removed."
         redirect_to root_path
     end

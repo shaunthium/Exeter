@@ -13,12 +13,12 @@ class MembershipsController < ApplicationController
     end
 
     def create
-        @member_slugs = params[:members]
-        @member_slugs.each do |key, value|
-            User.friendly.find(key).add_to_group(@group)
+        @members_slugs = params[:members]
+        @members_slugs.each do |name, slug|
+            User.friendly.find(slug).add_to_group(@group)
         end
         flash[:success] = "Successfully added friends to groups!"
-        redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: @group.slug)
+        redirect_to user_group_path(user_id: current_logged_in_user.slug, id: @group.slug)
     end
 
     def remove
@@ -32,6 +32,6 @@ class MembershipsController < ApplicationController
             User.friendly.find(key).remove_from_group(@group)
         end
         flash[:success] = "Successfully removed friends from groups."
-        redirect_to user_group_path(user_id: @current_logged_in_user.slug, id: @group.slug)
+        redirect_to user_group_path(user_id: current_logged_in_user.slug, id: @group.slug)
     end
 end

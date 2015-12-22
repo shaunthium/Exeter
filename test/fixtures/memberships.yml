@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+membership_1:
   member: james
   group: group_1
 
-two:
+membership_2:
   member: michael
   group: group_2
+
+membership_3:
+    member: timothy
+    group: group_1

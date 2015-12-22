@@ -25,6 +25,17 @@
         <% end %>
     <% end %>
     <br>
+    <div>
+        <h3>Group administrators:</h3>
+        <ol>
+            <% @group_admins.each do |admin| %>
+                <li>
+                    <%= admin.name %>
+                </li>
+            <% end %>
+        </ol>
+    </div>
+    <br>
     <div id="group-members">
         <h3>Group members:</h3>
         <ol>
