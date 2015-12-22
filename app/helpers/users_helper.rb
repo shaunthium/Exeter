@@ -22,9 +22,15 @@ module UsersHelper
         update_attribute(:remember_digest, User.digest(self.remember_token))
     end
 
+    # Forgets user for persistent session
+    def forget
+        update_attribute(:remember_digest, nil)
+    end
+
     # Checks if given token matches digest
     def authenticated?(remember_token)
-        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+        return false if self.remember_digest.nil?
+        BCrypt::Password.new(self.remember_digest).is_password?(remember_token)
     end
 
     # Befriends other User
