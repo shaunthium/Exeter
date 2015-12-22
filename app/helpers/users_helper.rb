@@ -4,6 +4,29 @@ module UsersHelper
         params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
+    # Returns hash digest of given string
+    # Class method, as no need for a user instance
+    def User.digest(string)
+        BCrypt::Password.create(string)
+    end
+
+    # Returns url-safe base-64 token
+    # Class method, as no need for a user instance
+    def User.new_token
+        SecureRandom.urlsafe_base64
+    end
+
+    # Remembers user for persistent session
+    def remember
+        self.remember_token = User.new_token
+        update_attribute(:remember_digest, User.digest(self.remember_token))
+    end
+
+    # Checks if given token matches digest
+    def authenticated?(remember_token)
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
+
     # Befriends other User
     def befriend(other_user)
         friendships.create!(friend_id: other_user.id)
