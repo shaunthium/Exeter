@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
     include UsersHelper
 
-    # is_logged_in? is found in SessionsHelper
-    before_action :is_logged_in?, except: [:new, :create]
-    # is_authorized_user? is found in SessionsHelper
-    before_action :is_authorized_user?, only: [:edit, :update, :destroy, :friends]
+    # redirect_if_not_logged_in is found in SessionsHelper
+    before_action :redirect_if_not_logged_in, except: [:new, :create]
+    # redirect_if_current_logged_in_user_is_not_user_on_page is found in SessionsHelper
+    before_action :redirect_if_current_logged_in_user_is_not_user_on_page, only: [:edit, :update, :destroy, :friends]
 
     def index
         @all_users = User.all

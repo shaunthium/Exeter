@@ -1,19 +1,20 @@
 class GroupsController < ApplicationController
-    include GroupsHelper, MembershipsHelper
+    include GroupsHelper, MembershipsHelper, AdminshipsHelper
 
-    # is_logged_in? is found in SessionsHelper
-    before_action :is_logged_in?
-    # is_authorized_user? is found in SessionsHelper
-    before_action :is_authorized_user?
+    # redirect_if_not_logged_in is found in SessionsHelper
+    before_action :redirect_if_not_logged_in
     # get_current_group_from_slug_in_id is found in GroupsHelper
     before_action :get_current_group_from_slug_in_id, only: [:show, :edit, :update, :destroy]
+    # is_admin? is found in AdminshipsHelper
+    before_action only: [:edit, :update, :destroy] do
+        is_admin?(get_current_group_from_slug_in_id)
+    end
 
     def index
     end
 
     def new
         @group = Group.new
-        @user = current_logged_in_user
     end
 
     def create
@@ -47,8 +48,10 @@ class GroupsController < ApplicationController
         @group.slug = nil
         if @group.update_attributes(group_params)
             @members_slugs = params[:members]
-            @members_slugs.each do |name, slug|
-                User.friendly.find(slug).make_admin_of_group(@group)
+            unless @members_slugs.nil?
+                @members_slugs.each do |name, slug|
+                    User.friendly.find(slug).make_admin_of_group(@group)
+                end
             end
             flash[:success] = "Updated group successfully!"
             redirect_to user_group_path(user_id: @user_slug, id: @group.slug)

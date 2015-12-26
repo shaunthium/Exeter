@@ -29,7 +29,7 @@ guard :minitest, spring: true, all_on_start: false do
     # corresponding controller and helper tests
     # if it's changed
     watch('app/helpers/sessions_helper.rb') {
-        [integration_tests, 'test/controllers/sessions_controller_test.rb', 'test/helpers/sessions_helper_test.rb']
+        [integration_tests, controller_test, 'test/controllers/sessions_controller_test.rb', 'test/helpers/sessions_helper_test.rb']
     }
     # Do all tests if ApplicationController is changed
     watch('app/controllers/application_controller.rb') {

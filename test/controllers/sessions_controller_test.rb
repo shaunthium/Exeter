@@ -1,24 +1,39 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-    test "should get new" do
-        get :new
-        assert_response :success
+    def setup
+        @james = users(:james)
     end
 
     test "should redirect new if logged_in" do
-        user = users(:james)
-        log_in_as(user)
+        log_in_as(@james)
         get :new
-        assert_redirected_to user
+        assert_redirected_to @james
     end
 
     test "should not be able to login with incorrect information" do
-      user = User.create(name: "Test", email: "test@test.com", password: "1", password_confirmation: "1")
       post :create, session: {
-          email: "test@test.com",
+          email: @james.email,
           password: "2"
       }
       assert_template 'new'
+    end
+
+    test "should login user with remembering" do
+        post :create, session: {
+            email: @james.email,
+            password: "1",
+            remember_me: "1"
+        }
+        assert_equal cookies[:remember_token], assigns[:user].remember_token
+    end
+
+    test "should login user without remembering" do
+        post :create, session: {
+            email: @james.email,
+            password: "1",
+            remember_me: "0"
+        }
+        assert_nil cookies[:remember_token]
     end
 end

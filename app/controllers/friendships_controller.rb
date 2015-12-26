@@ -1,6 +1,6 @@
 class FriendshipsController < ApplicationController
-    # is_logged_in? is found in SessionsHelper
-    before_action :is_logged_in?, only: [:create, :destroy]
+    # redirect_if_not_logged_in is found in SessionsHelper
+    before_action :redirect_if_not_logged_in, only: [:create, :destroy]
 
     def create
         user = User.find(params[:friend_id])

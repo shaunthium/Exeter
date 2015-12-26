@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     include PostsHelper
-    # is_logged_in? is found in SessionsHelper
-    before_action :is_logged_in?, only: [:create, :destroy]
+    # redirect_if_not_logged_in is found in SessionsHelper
+    before_action :redirect_if_not_logged_in, only: [:create, :destroy]
     # is_correct_user_for_post? is found in PostsHelper
     before_action :is_correct_user_for_post?, only: :destroy
 

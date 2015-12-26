@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   def new
       # Note: Use of logged_in? here in place of
-      # is_logged_in? because this action requires
-      # opposite result from is_logged_in?
+      # redirect_if_not_logged_in because this action
+      # requires the opposite result
 
       # logged_in? found in SessionsHelper
       if logged_in?
@@ -11,11 +11,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-      user = User.find_by(email: params[:session][:email].downcase)
-      if user && user.authenticate(params[:session][:password])
-          remember(user) if (params[:session][:remember_me] == "1")
-          log_in user
-          redirect_to user
+      @user = User.find_by(email: params[:session][:email].downcase)
+      if @user && @user.authenticate(params[:session][:password])
+          remember(@user) if (params[:session][:remember_me] == "1")
+          log_in @user
+          redirect_to @user
       else
           flash.now[:danger] = "Invalid email/password. Try again."
           render 'new'

@@ -3,25 +3,26 @@ include MembershipsHelper, SessionsHelper
 
 class MembershipsControllerTest < ActionController::TestCase
     def setup
-        @group_2 = groups(:group_2)
+        @group_1 = groups(:group_1)
         @james = users(:james)
         log_in_as(@james)
+        @adam = users(:adam)
     end
 
     test "should create new membership" do
         assert_difference "Membership.count" do
-            post :create, group_slug: @group_2.slug, members: { @james.slug => @james.slug }
+            post :create, group_slug: @group_1.slug, members: { @adam.slug => @adam.slug }
             assert_not flash.empty?
-            assert_redirected_to user_group_path(user_id: @james.slug, id: @group_2.slug)
+            assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.slug)
         end
     end
 
     test "should destroy membership" do
-        group_1 = groups(:group_1)
+        timothy = users(:timothy)
         assert_difference "Membership.count", -1 do
-            post :destroy, id: group_1.slug, group_slug: group_1.slug, members: { @james.slug => @james.slug }
+            post :destroy, id: @group_1.slug, group_slug: @group_1.slug, members: { timothy.slug => timothy.slug }
             assert_not flash.empty?
-            assert_redirected_to user_group_path(user_id: @james.slug, id: group_1.slug)
+            assert_redirected_to user_group_path(user_id: @james.slug, id: @group_1.slug)
         end
     end
 end
