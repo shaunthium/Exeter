@@ -2,7 +2,7 @@
 @import "bootstrap";
 @import "shared/error_messages";
 
-@include error_messages;
+@include error_messages_color;
 
 .debug_dump {
     width: 100%;

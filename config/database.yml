@@ -1,6 +1,7 @@
 development:
     adapter: postgresql
     database: exeter_development
+    host: localhost
     pool: 5
     timeout: 5000
     username: Shaun
@@ -9,6 +10,7 @@ development:
 test:
     adapter: postgresql
     database: exeter_test
+    host: localhost
     pool: 5
     timeout: 5000
     username: Shaun
