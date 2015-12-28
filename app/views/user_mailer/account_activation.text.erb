@@ -1,3 +1,7 @@
-UserMailer#account_activation
+Greetings from Exeter!
 
-<%= @greeting %>, find me in app/views/user_mailer/account_activation.text.erb
+Hi <%= @user.name %>,
+
+Welcome to Exeter! Click on the link below to activate your account:
+
+<%= edit_account_activation_url(@user.activation_token, @user.email) %>

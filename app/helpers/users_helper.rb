@@ -28,9 +28,11 @@ module UsersHelper
     end
 
     # Checks if given token matches digest
-    def authenticated?(remember_token)
-        return false if self.remember_digest.nil?
-        BCrypt::Password.new(self.remember_digest).is_password?(remember_token)
+    # Same function as BCrypt's authenticate method
+    def authenticated?(attribute, token)
+        digest = self.send("#{attribute}_digest")
+        return false if digest.nil?
+        BCrypt::Password.new(digest).is_password?(token)
     end
 
     # Befriends other User

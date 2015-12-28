@@ -13,11 +13,12 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
+  # Raise errors if the mailer fails
+  #config.action_mailer.raise_delivery_errors = true
   # Use Letter Opener gem for mailers
   config.action_mailer.delivery_method = :letter_opener
+  host = "localhost:3000"
+  config.action_mailer.default_url_options = { host: host }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
