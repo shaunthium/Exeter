@@ -64,4 +64,14 @@ module UsersHelper
     def make_admin_of_group(group)
         adminships.create(administrated_group_id: group.id)
     end
+
+    private
+        def create_activation_digest
+            self.activation_token = User.new_token
+            self.activation_digest = User.digest(self.activation_token)
+        end
+
+        def downcase_email
+            self.email = self.email.downcase
+        end
 end

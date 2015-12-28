@@ -38,8 +38,8 @@ guard :minitest, spring: true, all_on_start: false do
 end
 
 # Returns the integration tests corresponding to the given resource.
-def integration_tests(resource = "all")
-    if resource == "all"
+def integration_tests(resource = :all)
+    if resource == :all
         Dir["test/integration/*"]
     else
         Dir["test/integration/#{resource}_*.rb"]
@@ -47,8 +47,8 @@ def integration_tests(resource = "all")
 end
 
 # Returns the controller tests corresponding to the given resource.
-def controller_test(resource = "all")
-    if resource == "all"
+def controller_test(resource = :all)
+    if resource == :all
         Dir["test/controllers/*"]
     else
         Dir["test/controllers/#{resource}_controller_test.rb"]
@@ -56,8 +56,8 @@ def controller_test(resource = "all")
 end
 
 # Returns the model tests corresponding to the given resource.
-def model_test(resource = "all")
-    if resource == "all"
+def model_test(resource = :all)
+    if resource == :all
         Dir["test/models/*"]
     else
         Dir["test/models/#{resource}_test.rb"]
@@ -65,7 +65,7 @@ def model_test(resource = "all")
 end
 
 def helper_test(resource)
-    if resource == "all"
+    if resource == :all
         Dir["test/helpers/*"]
     else
         Dir["test/helpers/#{resource}_helper_test.rb"]
@@ -73,11 +73,11 @@ def helper_test(resource)
 end
 
 # Returns all tests for the given resource.
-def resource_tests(resource = "all")
-    if resource != "all"
+def resource_tests(resource = :all)
+    if resource != :all
         resource_for_model = resource.to_s.chop
     else
-        resource_for_model = "all"
+        resource_for_model = :all
     end
     [integration_tests(resource), controller_test(resource), model_test(resource_for_model), helper_test(resource)]
 end

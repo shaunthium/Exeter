@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
+    attr_accessor :remember_token, :activation_token
+    before_create :create_activation_digest
+    before_save   :downcase_email
+
     # Needed to allow User instances
     # to call methods in UsersHelper
     include UsersHelper
 
     extend FriendlyId
     friendly_id :name, use: :slugged
-
-    attr_accessor :remember_token
 
     has_many :posts, dependent: :destroy
     has_many :friendships, dependent: :destroy
@@ -19,8 +21,6 @@ class User < ActiveRecord::Base
     has_many :administrated_groups, class_name: "Group", through: :adminships
 
     has_secure_password
-
-    before_save { self.email = email.downcase }
 
     # More validations for name, email and password length
     # to be included before pushing to Production

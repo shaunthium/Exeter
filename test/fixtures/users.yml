@@ -5,21 +5,29 @@ james:
   email: "james@example.com"
   password_digest: <%= BCrypt::Password.create('1') %>
   slug: "james-tan"
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 michael:
     name: "Michael Lim"
     email: "michael@test.com"
     password_digest: <%= BCrypt::Password.create('1') %>
     slug: "michael-lim"
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 timothy:
     name: "Timothy Tan"
     email: "timothy@test.com"
     password_digest: <%= BCrypt::Password.create('1') %>
     slug: "timothy-tan"
+    activated: true
+    activated_at: <%= Time.zone.now %>
 
 adam:
     name: "Adam Ng"
     email: "adam@test.com"
     password_digest: <%= BCrypt::Password.create('1') %>
     slug: "adam-ng"
+    activated: true
+    activated_at: <%= Time.zone.now %>
