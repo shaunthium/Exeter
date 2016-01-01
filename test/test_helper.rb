@@ -26,6 +26,13 @@ class ActiveSupport::TestCase
       end
   end
 
+  # Needed because current_logged_in_user in tests
+  # cannot use methods on cookies e.g. .permanent,
+  # .signed
+  def is_logged_in?
+      !session[:user_id].nil?
+  end
+
   private
     def integration_test?
         defined?(post_via_redirect)
