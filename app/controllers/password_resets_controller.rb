@@ -1,4 +1,9 @@
 class PasswordResetsController < ApplicationController
+    include PasswordResetsHelper
+
+    before_action :get_user_from_email_in_params, only: [:edit, :update]
+    before_action :is_valid_user?, only: [:edit, :update]
+
     def new
     end
 
@@ -16,5 +21,18 @@ class PasswordResetsController < ApplicationController
     end
 
     def edit
+    end
+
+    def update
+        if params[:user][:password].empty?
+            @user.errors.add(:password, "can't be empty")
+            render 'edit'
+        elsif @user.update_attributes(password_reset_params)
+            log_in @user
+            flash[:success] = "Password has been successfully reset."
+            redirect_to @user
+        else
+            render 'edit'
+        end
     end
 end

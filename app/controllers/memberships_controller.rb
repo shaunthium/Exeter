@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-    include MembershipsHelper, GroupsHelper, UsersHelper, AdminshipsHelper
+    include MembershipsHelper, GroupsHelper, AdminshipsHelper
 
     # redirect_if_not_logged_in is found in SessionsHelper
     before_action :redirect_if_not_logged_in
