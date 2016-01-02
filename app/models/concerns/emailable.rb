@@ -4,7 +4,7 @@ module Emailable
     def create_reset_digest
         # Reference Account Activations for reason
         # as to why two update_attribute calls
-        # instead of single update_attributes call
+        # instead of single update_columns call
         self.reset_token = User.new_token
         update_attribute(:reset_digest, User.digest(self.reset_token))
         update_attribute(:reset_sent_at, Time.zone.now)
