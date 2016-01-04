@@ -1,5 +1,5 @@
 class AccountActivationsController < ApplicationController
-    def edit
+    def verify
         user = User.find_by(email: params[:email])
         if user && !user.activated && user.authenticated?(:activation, params[:id])
             # Use of 2 update_attribute calls

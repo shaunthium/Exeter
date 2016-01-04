@@ -29,13 +29,13 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         log_in_as(new_user)
         assert_not is_logged_in?
 
-        get edit_account_activation_path("invalid")
+        get verify_account_path("invalid")
         assert_not is_logged_in?
 
-        get edit_account_activation_path(new_user.activation_token, email: "invalid@example.com")
+        get verify_account_path(new_user.activation_token, email: "invalid@example.com")
         assert_not is_logged_in?
 
-        get edit_account_activation_path(new_user.activation_token, email: new_user.email)
+        get verify_account_path(new_user.activation_token, email: new_user.email)
         # Need to reload user from database as attribute has changed
         assert new_user.reload.activated?
     end

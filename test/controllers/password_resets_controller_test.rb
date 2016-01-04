@@ -6,8 +6,8 @@ class PasswordResetsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
+  test "should redirect edit on unauthorized access" do
     get :edit, id: 1
-    assert_response :success
+    assert_redirected_to root_path
   end
 end

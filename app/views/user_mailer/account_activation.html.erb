@@ -8,4 +8,4 @@
     Welcome to Exeter! Click on the link below to activate your account:
 </p>
 
-<%= link_to "Activate my account", edit_account_activation_url(@user.activation_token, email: @user.email), class: "btn btn-primary" %>
+<%= link_to "Activate my account", verify_account_url(@user.activation_token, email: @user.email), class: "btn btn-primary" %>
