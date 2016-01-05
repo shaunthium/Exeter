@@ -1,2 +1,0 @@
-class AdminshipsController < ApplicationController
-end

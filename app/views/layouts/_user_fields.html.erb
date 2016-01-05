@@ -1,31 +1,31 @@
 <%= form_for @user, url: url do |f| %>
-    <% unless view == "reset" %>
-        <div class="form-group">
-            <%= f.label :name %>
-            <%= f.text_field :name, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
-        </div>
-    <% else %>
-        <%= hidden_field_tag :email, @user.email %>
-    <% end %>
+  <% unless view == "reset" %>
     <div class="form-group">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
     </div>
-    <% if view == "new" %>
-        <%= f.submit "Create my account", class: "btn btn-primary" %>
-    <% elsif view == "edit" %>
-        <%= f.submit "Update my information", class: "btn btn-primary" %>
-    <% else %>
-        <%= f.submit "Reset my password", class: "btn btn-primary" %>
-    <% end %>
+  <% else %>
+    <%= hidden_field_tag :email, @user.email %>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+  <% if view == "new" %>
+    <%= f.submit "Create my account", class: "btn btn-primary" %>
+  <% elsif view == "edit" %>
+    <%= f.submit "Update my information", class: "btn btn-primary" %>
+  <% else %>
+    <%= f.submit "Reset my password", class: "btn btn-primary" %>
+  <% end %>
 <% end %>

@@ -1,10 +1,12 @@
 <% provide(:title, "Welcome!") %>
 <div class="container-fluid">
-    <div class="row jumbotron">
-      <div class="col-md-6 col-md-offset-3">
-          <%= render 'shared/error_messages', object: @user %>
-        <%= render 'layouts/user_fields', view: "new", url: users_path %>
-        <p>Have an account? <%= link_to 'Login here!', login_path %></p>
-      </div>
+  <div class="row jumbotron">
+    <div class="col-md-6 col-md-offset-3">
+      <%= render 'shared/error_messages', object: @user %>
+      <%= render 'layouts/user_fields', view: "new", url: users_path %>
+      <p>
+        Have an account? <%= link_to 'Login here!', login_path %>
+      </p>
     </div>
+  </div>
 </div>

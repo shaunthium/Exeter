@@ -13,28 +13,28 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def log_in_as(user, options = {})
-      password = options[:password] || "1"
-      remember_me = options[:remember_me] || "1"
-      if integration_test?
-          post login_path, session: {
-              email: user.email,
-              password: password,
-              remember_me: remember_me
-          }
-      else
-          session[:user_id] = user.id
-      end
+    password = options[:password] || "1"
+    remember_me = options[:remember_me] || "1"
+    if integration_test?
+      post login_path, session: {
+        email: user.email,
+        password: password,
+        remember_me: remember_me
+      }
+    else
+      session[:user_id] = user.id
+    end
   end
 
   # Needed because current_logged_in_user in tests
   # cannot use methods on cookies e.g. .permanent,
   # .signed
   def is_logged_in?
-      !session[:user_id].nil?
+    !session[:user_id].nil?
   end
 
   private
     def integration_test?
-        defined?(post_via_redirect)
+      defined?(post_via_redirect)
     end
 end

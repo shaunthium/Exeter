@@ -1,7 +1,7 @@
 module UsersHelper
-    private
-        # Strong params
-        def user_params
-            params.require(:user).permit(:name, :email, :password, :password_confirmation)
-        end
+  private
+    # Strong params
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 end

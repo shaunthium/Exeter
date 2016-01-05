@@ -1,27 +1,27 @@
 Rails.application.routes.draw do
-    root 'users#new'
+  root 'users#new'
 
-    get 'login' => 'sessions#new'
-    post 'login' => 'sessions#create'
-    delete 'logout' => 'sessions#destroy'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
 
-    resources :users do
-        get :friends
-        resources :groups
-    end
-    resources :posts, only: [:create, :destroy]
-    resources :friendships, only: [:create, :destroy]
+  resources :users do
+    get :friends
+    resources :groups
+  end
+  resources :posts, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 
-    resources :memberships, only: [:new, :create, :destroy], path_names: { new: 'add' }
+  resources :memberships, only: [:new, :create, :destroy], path_names: { new: 'add' }
 
-    get 'remove_memberships' => 'memberships#remove', path: 'memberships/remove'
+  get 'remove_memberships' => 'memberships#remove', path: 'memberships/remove'
 
-    resources :adminships, only: [:create, :destroy]
+  resources :adminships, only: [:create, :destroy]
 
-    # resources :account_activations, only: :edit
-    get 'verify_account' => 'account_activations#verify', path: '/verify/:id'
+  # resources :account_activations, only: :edit
+  get 'verify_account' => 'account_activations#verify', path: '/verify/:id'
 
-    resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

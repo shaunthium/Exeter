@@ -1,5 +1,5 @@
 <% provide(:title, "Edit group information") %>
 <div class="container-fluid">
-    <%= render 'shared/error_messages', object: @group %>
-    <%= render 'group_fields', view: "edit", url: user_group_path(user_id: @user_slug, id: @group.slug) %>
+  <%= render 'shared/error_messages', object: @group %>
+  <%= render 'group_fields', view: "edit", url: user_group_path(user_id: @user_slug, id: @group.slug) %>
 </div>

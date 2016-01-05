@@ -50,51 +50,51 @@ gem 'faker'
 # gem 'capistrano-rails', group: :development
 
 group :doc do
-    # bundle exec rake doc:rails generates the API under doc/api.
-    gem 'sdoc', '~> 0.4.0'
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', '~> 0.4.0'
 end
 
 group :development do
-    # Turns off Rails asset pipeline log
-    gem 'quiet_assets'
+  # Turns off Rails asset pipeline log
+  gem 'quiet_assets'
 
-    # Replaces standard Rails error page with a better
-    # one.
-    gem 'better_errors'
+  # Replaces standard Rails error page with a better
+  # one.
+  gem 'better_errors'
 
-    # Required for Better Errors gem to use live
-    # REPL feature
-    gem 'binding_of_caller'
+  # Required for Better Errors gem to use live
+  # REPL feature
+  gem 'binding_of_caller'
 
-    # Previews mail in browser without sending
-    gem 'letter_opener'
+  # Previews mail in browser without sending
+  gem 'letter_opener'
 end
 
 group :development, :test do
-    # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-    gem 'spring'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
 end
 
 group :test do
-    # Required for guard-minitest and guard-rails
-    gem 'guard'
+  # Required for guard-minitest and guard-rails
+  gem 'guard'
 
-    # Runs tests automatically when files change
-    # using Guard
-    gem 'guard-minitest'
+  # Runs tests automatically when files change
+  # using Guard
+  gem 'guard-minitest'
 
-    # Starts Rails server with guard command
-    gem 'guard-rails'
+  # Starts Rails server with guard command
+  gem 'guard-rails'
 
-    # Custom reporters
-    gem 'minitest-reporters'
+  # Custom reporters
+  gem 'minitest-reporters'
 end
 
 group :production do
-    # Needed to deploy app on 12 factor server e.g. Heroku
-    gem 'rails_12factor'
+  # Needed to deploy app on 12 factor server e.g. Heroku
+  gem 'rails_12factor'
 
-    # Use Puma instead of WEBrick in production
-    # to handle larger amounts of traffic
-    gem 'puma'
+  # Use Puma instead of WEBrick in production
+  # to handle larger amounts of traffic
+  gem 'puma'
 end

@@ -1,14 +1,14 @@
 <% provide(:title, "Add friends to group") %>
 <div class="container-fluid">
-    <%= form_tag(memberships_path, method: :post) do %>
-        <ol>
-            <% @members.each do |member| %>
-                <li>
-                    <%= render "membership_checkboxes", member: member %>
-                </li>
-            <% end %>
-        </ol>
-        <%= hidden_field_tag :group_slug, @group_slug %>
-        <%= submit_tag "Add friends to group", class: "btn btn-primary"%>
-    <% end %>
+  <%= form_tag(memberships_path, method: :post) do %>
+    <ol>
+      <% @members.each do |member| %>
+        <li>
+          <%= render "membership_checkboxes", member: member %>
+        </li>
+      <% end %>
+    </ol>
+    <%= hidden_field_tag :group_slug, @group_slug %>
+    <%= submit_tag "Add friends to group", class: "btn btn-primary"%>
+  <% end %>
 </div>
