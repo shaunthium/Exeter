@@ -9,13 +9,12 @@ class UsersPostsNotificationsTest < ActionDispatch::IntegrationTest
 
   test "should notify other members of group when user posts" do
     assert_difference "Post.count" do
-      assert_difference "Notification.count" do
+      assert_difference "Notification.count", 2 do
         post posts_path, post: {
           content: "Test",
           group_id: @group_1.id
         }
       end
     end
-    flunk "Test for notification when posting fails"
   end
 end

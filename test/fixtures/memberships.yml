@@ -4,10 +4,14 @@ membership_james_group_1:
   member: james
   group: group_1
 
+membership_timothy_group_1:
+  member: timothy
+  group: group_1
+
+membership_adam_group_1:
+  member: adam
+  group: group_1
+
 membership_michael_group_2:
   member: michael
   group: group_2
-
-membership_timothy_group_1:
-    member: timothy
-    group: group_1

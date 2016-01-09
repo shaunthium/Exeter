@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   has_many :posts, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   # More validations for name, email and password length
   # to be included before pushing to Production

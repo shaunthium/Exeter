@@ -6,6 +6,7 @@
     <% if logged_in? %>
       <div>
         <ul class="nav navbar-nav navbar-right">
+          <%= render 'shared/notifications' %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               <%= current_logged_in_user.name %>

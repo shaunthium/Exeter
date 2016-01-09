@@ -7,5 +7,16 @@
     })
   });
 </script>
-<div class="well" id="notification">
-</div>
+<li class="dropdown">
+  <a href="#" id="notification-bell" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="glyphicon glyphicon-bell"></i>
+  </a>
+  <ul class="dropdown-menu">
+    <% current_logged_in_user.notifications.each do |notification| %>
+      <li>
+        <%= notification.content %>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+</li>
