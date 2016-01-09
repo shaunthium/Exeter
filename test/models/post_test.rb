@@ -27,6 +27,6 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "posts should be in descending order" do
-    assert_equal Post.first, posts(:most_recent)
+    assert_equal Post.first, posts(:post_most_recent_michael_group_2)
   end
 end

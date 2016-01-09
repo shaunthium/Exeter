@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-friendship_one:
+friendship_timothy_adam:
   user: timothy
   friend: adam
 
-friendship_two:
+friendship_adam_timothy:
   user: adam
   friend: timothy

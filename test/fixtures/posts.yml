@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-cat:
+post_james_group_1:
   content: "Cute cat!"
   created_at: <%= 10.minutes.ago %>
   user: james
   group: group_1
 
-most_recent:
+post_most_recent_michael_group_2:
   content: "Most recent post."
   created_at: <%= Time.zone.now %>
   user: michael

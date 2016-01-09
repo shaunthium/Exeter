@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  content: MyText
-
-two:
-  user_id: 
-  content: MyText
+notification_adam:
+  user: adam
+  content: "haha"

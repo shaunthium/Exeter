@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-membership_1:
+membership_james_group_1:
   member: james
   group: group_1
 
-membership_2:
+membership_michael_group_2:
   member: michael
   group: group_2
 
-membership_3:
+membership_timothy_group_1:
     member: timothy
     group: group_1
