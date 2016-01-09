@@ -9,6 +9,9 @@ class PostsController < ApplicationController
     @post = @current_logged_in_user.posts.build(post_params)
     if @post.save
       flash[:success] = "Post created!"
+      Pusher['post_channel'].trigger('post', {
+        :poster_name => @post.user.name
+      })
     else
       flash[:danger] = "Failed to create post."
     end
