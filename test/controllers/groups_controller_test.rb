@@ -18,7 +18,7 @@ class GroupsControllerTest < ActionController::TestCase
   test "should show group members" do
     get :show, user_id: @james.slug, id: @group_1.slug
     assert_select 'div#group-members' do
-      assert_select "li", 2
+      assert_select "li", 3
     end
   end
 

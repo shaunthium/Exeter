@@ -1,16 +1,16 @@
 <script>
   $(document).ready(function() {
-    var pusher = new Pusher('<%= Pusher.key %>');
-    var channel = pusher.subscribe('post_channel');
-    channel.bind('post', function(post) {
-      $('#notification').text(post.poster_name);
-    })
+    // var pusher = new Pusher('<%= Pusher.key %>');
+    // var channel = pusher.subscribe('post_channel');
+    // channel.bind('post', function(post) {
+    //   $('#notification').text(post.poster_name);
+    // })
   });
 </script>
 <li class="dropdown">
-  <a href="#" id="notification-bell" class="dropdown-toggle" data-toggle="dropdown">
+  <%= link_to notification_path, remote: true, method: :patch, id: "notification-bell", class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
     <i class="glyphicon glyphicon-bell"></i>
-  </a>
+  <% end %>
   <ul class="dropdown-menu">
     <% current_logged_in_user.notifications.each do |notification| %>
       <% if notification.read %>
