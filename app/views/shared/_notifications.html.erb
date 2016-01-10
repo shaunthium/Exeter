@@ -13,7 +13,11 @@
   </a>
   <ul class="dropdown-menu">
     <% current_logged_in_user.notifications.each do |notification| %>
-      <li>
+      <% if notification.read %>
+        <li class="notification-read">
+      <% else %>
+        <li class="notification-unread">
+      <% end %>
         <%= notification.content %>
       </li>
       <hr>
