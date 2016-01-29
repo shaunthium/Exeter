@@ -1,17 +1,23 @@
 <script>
   $(document).ready(function() {
-    // var pusher = new Pusher('<%= Pusher.key %>');
-    // var channel = pusher.subscribe('post_channel');
-    // channel.bind('post', function(post) {
-    //   $('#notification').text(post.poster_name);
-    // })
+    var pusher = new Pusher('<%= Pusher.key %>');
+    var channel = pusher.subscribe('post_channel');
+    channel.bind('new_post', function(new_post) {
+      $('#notifications-ul').prepend("<li class='notification-read'>new_post.content</li>");
+    })
   });
 </script>
 <li class="dropdown">
-  <%= link_to notification_path, remote: true, method: :patch, id: "notification-bell", class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
-    <i class="glyphicon glyphicon-bell"></i>
+  <% if current_logged_in_user.has_unread_notifications %>
+    <%= link_to notification_path(1), remote: true, method: :patch, id: "notification-bell", class: "dropdown-toggle has-unread-notifications", data: { toggle: "dropdown" } do %>
+      <i class="glyphicon glyphicon-bell"></i>
+    <% end %>
+  <% else %>
+    <%= link_to notification_path(1), remote: true, method: :patch, id: "notification-bell", class: "dropdown-toggle", data: { toggle: "dropdown" } do %>
+      <i class="glyphicon glyphicon-bell"></i>
+    <% end %>
   <% end %>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu" id="notifications-ul">
     <% current_logged_in_user.notifications.each do |notification| %>
       <% if notification.read %>
         <li class="notification-read">

@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20160110080512) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.boolean  "has_unread_notifications"
+    t.boolean  "has_unread_notifications", default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

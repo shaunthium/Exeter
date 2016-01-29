@@ -12,10 +12,9 @@ class PostsController < ApplicationController
       group = @post.group
       action = "created a post"
       notify_members_of_group(group, action)
-      # TO-DO: Remove test code below
-      # Pusher['post_channel'].trigger('post', {
-      #   :poster_name => @post.user.name
-      # })
+      Pusher['post_channel'].trigger('new_post', {
+        post: @post
+      })
     else
       flash[:danger] = "Failed to create post."
     end

@@ -1,23 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "shared/error_messages";
+@import "shared/notifications";
 
 @include error_messages_color;
 
-.debug_dump {
-  width: 100%;
-  position: static;
-  bottom: 0;
-}
-
-input[type="submit"] {
-  border: 1px solid #bbb;
-  width: 100%;
-}
-
-.notification-unread {
-  color: red;
-}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
