@@ -13,7 +13,8 @@ class PostsController < ApplicationController
       action = "created a post"
       notify_members_of_group(group, action)
       Pusher['post_channel'].trigger('new_post', {
-        post: @post
+        # TODO: this is currently not being used
+        content: "haha"
       })
     else
       flash[:danger] = "Failed to create post."
