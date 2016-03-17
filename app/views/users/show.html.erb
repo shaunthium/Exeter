@@ -7,6 +7,7 @@
     <p>
       <%= @user.name %>
     </p>
+    <%= image_tag @user.picture.url if @user.picture? %>
     <% if current_logged_in_user_is?(@user) %>
       <p>
         <%= link_to "Create new group", new_user_group_path(user_id: @user.slug), class: "btn btn-primary" %>

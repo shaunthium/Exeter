@@ -1,4 +1,4 @@
-<%= form_for @user, url: url do |f| %>
+<%= form_for(@user, html: { multipart: true }, url: url) do |f| %>
   <% unless view == "reset" %>
     <div class="form-group">
       <%= f.label :name %>
@@ -24,6 +24,9 @@
   <% if view == "new" %>
     <%= f.submit "Create my account", class: "btn btn-primary" %>
   <% elsif view == "edit" %>
+    <div class="form-group">
+      <%= f.file_field :picture %>
+    </div>
     <%= f.submit "Update my information", class: "btn btn-primary" %>
   <% else %>
     <%= f.submit "Reset my password", class: "btn btn-primary" %>
