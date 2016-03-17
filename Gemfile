@@ -43,6 +43,12 @@ gem 'friendly_id', '~> 5.1.0'
 # Create realistic testing data
 gem 'faker'
 
+# Image upload
+gem 'carrierwave'
+# Image resize
+gem 'mini_magick'
+gem 'fog'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
