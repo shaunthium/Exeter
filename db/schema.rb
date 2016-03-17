@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104120430) do
+ActiveRecord::Schema.define(version: 20151230073426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,16 +69,6 @@ ActiveRecord::Schema.define(version: 20160104120430) do
   add_index "memberships", ["member_id", "group_id"], name: "index_memberships_on_member_id_and_group_id", unique: true, using: :btree
   add_index "memberships", ["member_id"], name: "index_memberships_on_member_id", using: :btree
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "notifications", ["group_id"], name: "index_notifications_on_group_id", using: :btree
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
-
   create_table "posts", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -108,6 +98,6 @@ ActiveRecord::Schema.define(version: 20160104120430) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
-  add_foreign_key "notifications", "groups"
-  add_foreign_key "notifications", "users"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "posts", "users"
 end
