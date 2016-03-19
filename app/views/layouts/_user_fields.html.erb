@@ -24,9 +24,9 @@
   <% if view == "new" %>
     <%= f.submit "Create my account", class: "btn btn-primary" %>
   <% elsif view == "edit" %>
-    <!-- <div class="form-group"> -->
-      <%# f.file_field :picture %>
-    <!-- </div> -->
+    <div class="form-group">
+      <%= f.file_field :picture %>
+    </div>
     <%= f.submit "Update my information", class: "btn btn-primary" %>
   <% else %>
     <%= f.submit "Reset my password", class: "btn btn-primary" %>
